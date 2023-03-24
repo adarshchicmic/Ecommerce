@@ -11,6 +11,9 @@ import MainNavigator from './Main';
 import { useFlipper } from '@react-navigation/devtools';
 const Stack = createStackNavigator();
 import SignUp from '../screens/SignUp/SignUp';
+import LogIn from '../screens/Login/Login';
+import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
+import CreatePassword from '../screens/CreatePassword/CreatePassword';
 // @refresh reset
 const ApplicationNavigator = () => {
   const { Layout, darkMode, NavigationTheme } = useTheme();
@@ -22,8 +25,10 @@ const ApplicationNavigator = () => {
       <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
         <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Startup" component={SignUp} />
-          <Stack.Screen name="Main" component={MainNavigator} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          <Stack.Screen name="CreateNewPassword" component={CreatePassword} />
+          <Stack.Screen name="Login" component={LogIn} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

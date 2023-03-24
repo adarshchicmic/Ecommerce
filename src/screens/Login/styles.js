@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   Text: val => ({
-    fontSize: val === COMMON_CONSTS.CREATE_ACCOUNT ? RFValue(30) : RFValue(15),
-    marginBottom: val === COMMON_CONSTS.CREATE_ACCOUNT ? hp('10%') : RFValue(5),
+    fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(30) : RFValue(15),
+    marginBottom: val === COMMON_CONSTS.SIGN_IN ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
   TextInputStyle: val => ({
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   },
   doNotHaveAccountContainer: {
     flexDirection: 'row',
-    marginTop: hp('10%'),
     justifyContent: 'center',
   },
   createNewAccountStyle: {
@@ -53,6 +52,9 @@ const styles = StyleSheet.create({
   textDonotHaveAccount: {
     fontWeight: '600',
     marginRight: wp('2%'),
+  },
+  footerView: {
+    marginTop: hp('10%'),
   },
 });
 

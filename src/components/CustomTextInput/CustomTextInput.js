@@ -12,7 +12,9 @@ const CustomTextInput = ({
   onFocusInput,
   onBlurInput,
   placeholderTextColor,
+  onEndEditing,
   editable,
+  inputeMode = 'text',
 }) => {
   return (
     <View style={customInputTextOuterStyle}>
@@ -26,6 +28,8 @@ const CustomTextInput = ({
         onFocus={onFocusInput}
         onBlur={onBlurInput}
         placeholderTextColor={placeholderTextColor}
+        onEndEditing={onEndEditing}
+        inputMode={inputeMode}
       />
     </View>
   );
