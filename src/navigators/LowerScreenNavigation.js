@@ -17,17 +17,30 @@ const LowerScreenNavigation = () => {
         <Tab.Screen
           name="Home"
           component={HomeScreen}
-          //   options={
-          //     {
-          //     //   tabBarIcon: ({ width, height }) => (
-          //     //     // <SvgHome width={20} height={20} />
-          //     //   //   <SvgXml xml={SvgHome} width="100%" height="100%" />
-          //     //   ),
-          //     }
-          //   }
+          options={{
+            tabBarIcon: ({ width, height }) => (
+              <SvgHome width={20} height={20} />
+            ),
+          }}
         />
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="Cart" component={Cart} />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ width, height }) => (
+              <SvgUser width={20} height={20} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            tabBarIcon: ({ width, height }) => (
+              <SvgCart width={20} height={20} />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </>
   );
