@@ -1,9 +1,10 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+
 const CreatePassword = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusPasswordAgain: false,
@@ -107,7 +108,7 @@ const CreatePassword = ({ navigation }) => {
         btnText={COMMON_CONSTS.SAVE_CHANGES_AND_SIGN_IN}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => validate}
+        onPressFunction={() => navigation.navigate('FirstScreen')}
       />
     </SafeAreaView>
   );

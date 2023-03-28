@@ -1,9 +1,11 @@
 import { SafeAreaView, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+import { useSignUpMutation, useSignInMutation } from '../../services/api';
+import { useGetAllProductsQuery, useGetProductQuery } from '../../services/api';
 const SignUp = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusYourName: false,
@@ -11,6 +13,7 @@ const SignUp = ({ navigation }) => {
     focusPassword: false,
     focusOtp: false,
   });
+  const [showOtp, setShowOtp] = useState(false);
   const [credentials, setCredentials] = useState({
     yourName: '',
     mobileNumber: '',
@@ -23,6 +26,29 @@ const SignUp = ({ navigation }) => {
     otp: false,
   });
   const [allfilled, setAllFilled] = useState(true);
+  const { isLoading, error, data: getAllProducts } = useGetAllProductsQuery();
+  const { data: getProducts } = useGetProductQuery('iphone');
+  const [signUp, signUpResult] = useSignUpMutation();
+  const [signIn, signInResult] = useSignInMutation();
+  useEffect(() => {
+    if (signUpResult.isLoading === false && signUpResult.isSuccess === true) {
+      console.log(signUpResult, 'useEffect walla hai ye');
+      alert(`${signUpResult.data.message}, 'Please SignIn'`);
+    }
+  }, [signUpResult]);
+
+  const handleSubmit = () => {
+    signUp({
+      phone_number: credentials.mobileNumber,
+      name: credentials.yourName,
+      password: credentials.password,
+    });
+    console.log(signUpResult, 'signUp resykr ');
+    console.log(getProducts, 'data1');
+    console.log(isLoading, 'isloading');
+    console.log(error, 'isloading');
+    console.log(getAllProducts, 'isloading');
+  };
   // this is for setting credentials and validation
   const handleInputYourName = value => {
     setCredentials({ ...credentials, yourName: value });
@@ -128,22 +154,27 @@ const SignUp = ({ navigation }) => {
           {COMMON_CONSTS.ENTER_VALID_PASSWORD}
         </Text>
       )}
-      <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
-        {COMMON_CONSTS.OTP}
-        <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-      </Text>
-      <CustomTextInput
-        styleInputText={styles.TextInputStyle(focus.focusOtp)}
-        onFocusInput={() => handleOnFocus(COMMON_CONSTS.OTP)}
-        onBlurInput={() => handelOnBlur(COMMON_CONSTS.OTP)}
-        onChangeTextFunction={handleInputOtp}
-      />
+
+      {showOtp && (
+        <View>
+          <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
+            {COMMON_CONSTS.OTP}
+            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+          </Text>
+          <CustomTextInput
+            styleInputText={styles.TextInputStyle(focus.focusOtp)}
+            onFocusInput={() => handleOnFocus(COMMON_CONSTS.OTP)}
+            onBlurInput={() => handelOnBlur(COMMON_CONSTS.OTP)}
+            onChangeTextFunction={handleInputOtp}
+          />
+        </View>
+      )}
       {!allfilled ? <Text>djsfakl</Text> : null}
       <CustomButton
         btnText={COMMON_CONSTS.CONTINUE}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => validate}
+        onPressFunction={() => handleSubmit()}
       />
       <View style={styles.doNotHaveAccountContainer}>
         <Text style={styles.textDonotHaveAccount}>

@@ -1,9 +1,10 @@
 import { SafeAreaView, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+import { useSignInMutation } from '../../services/api';
 const Login = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusMobileNumber: false,
@@ -17,6 +18,19 @@ const Login = ({ navigation }) => {
     mobileNumber: false,
     password: false,
   });
+  const [signIn, signInResult] = useSignInMutation();
+  useEffect(() => {
+    if (signInResult.isLoading === false && signInResult.isSuccess === true) {
+      console.log(signInResult, 'useEffect walla hai ye');
+      alert(`${signInResult.data.message}, 'Please Enter password and verify'`);
+    }
+  }, [signInResult]);
+  const handlesignInButton = () => {
+    signIn({
+      phone_number: credentials.mobileNumber,
+      password: credentials.password,
+    });
+  };
   // this is for setting credentials
   const handleInputMobileNumber = value => {
     setCredentials({ ...credentials, mobileNumber: value });
@@ -107,7 +121,7 @@ const Login = ({ navigation }) => {
         btnText={COMMON_CONSTS.SIGN_IN}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => validate}
+        onPressFunction={() => handlesignInButton()}
       />
       <View style={styles.footerView}>
         <View style={styles.doNotHaveAccountContainer}>

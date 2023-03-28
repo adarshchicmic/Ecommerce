@@ -5,6 +5,10 @@ import SignUp from '../screens/SignUp/SignUp';
 import LogIn from '../screens/Login/Login';
 import ForgotPassword from '../screens/ForgotPassword/ForgotPassword';
 import CreatePassword from '../screens/CreatePassword/CreatePassword';
+
+import 'react-native-gesture-handler';
+import FirstScreen from '../screens/Authenticated/FirstScreen/FirstScreen';
+
 const Stack = createNativeStackNavigator();
 
 const ApplicationNavigator = () => {
@@ -15,6 +19,7 @@ const ApplicationNavigator = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="CreateNewPassword" component={CreatePassword} />
         <Stack.Screen name="Login" component={LogIn} />
+        <Stack.Screen name="FirstScreen" component={FirstScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
