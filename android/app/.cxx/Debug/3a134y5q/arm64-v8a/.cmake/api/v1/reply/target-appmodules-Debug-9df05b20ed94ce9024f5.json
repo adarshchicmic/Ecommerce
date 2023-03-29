@@ -350,10 +350,6 @@
 	[
 		{
 			"backtrace" : 5,
-			"id" : "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec"
-		},
-		{
-			"backtrace" : 5,
 			"id" : "react_codegen_reactnativemmkv::@53a90ad335aa3dba27a5"
 		},
 		{
@@ -367,6 +363,10 @@
 		{
 			"backtrace" : 5,
 			"id" : "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec"
 		}
 	],
 	"id" : "appmodules::@6890427a1f51a3e7e1df",

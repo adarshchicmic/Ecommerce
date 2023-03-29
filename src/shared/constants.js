@@ -24,4 +24,5 @@ export const COMMON_CONSTS = {
   CREATE_NEW_PASSWORD: 'Create new password',
   SAVE_CHANGES_AND_SIGN_IN: 'Save changes and sign in',
   PASSWORD_DID_NOT_MATCH: 'Password did not match',
+  AUTHENTICATION_REQUIRED: 'Authentication Required',
 };

@@ -4,7 +4,7 @@ import Cart from '../screens/Authenticated/Cart/Cart';
 import HomeScreen from '../screens/Authenticated/HomeScreen/HomeScreen';
 import Profile from '../screens/Authenticated/Profile/Profile';
 import { SvgCart, SvgHome, SvgUser } from '../Asset/svgIcon';
-import { SvgXml } from 'react-native-svg';
+
 const Tab = createBottomTabNavigator();
 
 const LowerScreenNavigation = () => {
@@ -28,7 +28,7 @@ const LowerScreenNavigation = () => {
           component={Profile}
           options={{
             tabBarIcon: ({ width, height }) => (
-              <SvgUser width={20} height={20} />
+              <SvgUser width={20} height={100} />
             ),
           }}
         />

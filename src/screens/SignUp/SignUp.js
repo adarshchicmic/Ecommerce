@@ -43,6 +43,7 @@ const SignUp = ({ navigation }) => {
       name: credentials.yourName,
       password: credentials.password,
     });
+    navigation.navigate('Otp');
     console.log(signUpResult, 'signUp resykr ');
     console.log(getProducts, 'data1');
     console.log(isLoading, 'isloading');

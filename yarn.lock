@@ -6477,6 +6477,16 @@ react-native-mmkv@^2.6.2:
   resolved "https://registry.npmjs.org/react-native-mmkv/-/react-native-mmkv-2.6.2.tgz"
   integrity sha512-jYvOYohzwMoNBT6QI8oy4+D4JMYK+j2bnuLzr2koYjigoHsSl3TXfaCt0eErbrFIbBazP1V9j2jqACVwvPgLgA==
 
+react-native-otp-auto-fill@^0.1.17:
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/react-native-otp-auto-fill/-/react-native-otp-auto-fill-0.1.17.tgz#746723c4932bbed6ea135b02cf3634e47e73f62e"
+  integrity sha512-BqFS9FIta18gtq8Z4wyoCLwaNxzPJWvvnu73L+yEu2ITI+izYGwwt8Rm9XwavdS+IiOZ9tilWKmCl+VhhGztQQ==
+
+react-native-otp-inputs@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-otp-inputs/-/react-native-otp-inputs-7.4.0.tgz#ea1badabdf231faee5bcb5231034911bbba49aed"
+  integrity sha512-+phHrlcQQ63VuOrHaOZze7LP9WmzUGxGMlQx2A/jhPhYkCi/5hXDjxNcWyPXCy/RFRoLX+70HNpGqTgo0mDg7Q==
+
 react-native-reanimated@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.0.2.tgz"

@@ -8,6 +8,7 @@ import CreatePassword from '../screens/CreatePassword/CreatePassword';
 
 import 'react-native-gesture-handler';
 import FirstScreen from '../screens/Authenticated/FirstScreen/FirstScreen';
+import Otp from '../screens/Otp/Otp';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const ApplicationNavigator = () => {
         <Stack.Screen name="CreateNewPassword" component={CreatePassword} />
         <Stack.Screen name="Login" component={LogIn} />
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
+        <Stack.Screen name="Otp" component={Otp} />
       </Stack.Navigator>
     </NavigationContainer>
   );
