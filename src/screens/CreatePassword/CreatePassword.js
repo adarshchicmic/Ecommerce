@@ -39,9 +39,9 @@ const CreatePassword = ({ navigation }) => {
   // this is for onFocus and onBlur Functionality
   const handleOnFocus = inputName => {
     if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ ...focus, focusPassword: true });
+      setFocus({ focusPasswordAgain: false, focusPassword: true });
     } else if (inputName === COMMON_CONSTS.PASSWORD_AGAIN) {
-      setFocus({ ...focus, focusPasswordAgain: true });
+      setFocus({ focusPassword: false, focusPasswordAgain: true });
     }
   };
   const handelOnBlur = inputName => {
@@ -51,7 +51,6 @@ const CreatePassword = ({ navigation }) => {
       setFocus({ ...focus, focusPasswordAgain: false });
     }
   };
-
   const validate = () => {
     if (!COMMON_CONSTS.MOBILE_REGEX.test(credentials.mobileNumber)) {
       setValidation({

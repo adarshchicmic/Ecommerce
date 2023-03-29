@@ -18,6 +18,7 @@ const Login = ({ navigation }) => {
     mobileNumber: false,
     password: false,
   });
+  const [allFilled, setAllFilled] = useState(false);
   const [signIn, signInResult] = useSignInMutation();
   useEffect(() => {
     if (signInResult.isLoading === false && signInResult.isSuccess === true) {
@@ -30,6 +31,16 @@ const Login = ({ navigation }) => {
       phone_number: credentials.mobileNumber,
       password: credentials.password,
     });
+    if (
+      !!credentials.mobileNumber &&
+      !!credentials.password &&
+      validation.mobileNumber &&
+      validation.password
+    ) {
+      setAllFilled(true);
+    } else {
+      setAllFilled(false);
+    }
   };
   // this is for setting credentials
   const handleInputMobileNumber = value => {
@@ -51,9 +62,9 @@ const Login = ({ navigation }) => {
   // this is for onFocus and onBlur Functionality
   const handleOnFocus = inputName => {
     if (inputName === COMMON_CONSTS.MOBILE_NUMBER) {
-      setFocus({ ...focus, focusMobileNumber: true });
+      setFocus({ focusPassword: false, focusMobileNumber: true });
     } else if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ ...focus, focusPassword: true });
+      setFocus({ focusMobileNumber: false, focusPassword: true });
     }
   };
   const handelOnBlur = inputName => {
@@ -112,11 +123,7 @@ const Login = ({ navigation }) => {
           {COMMON_CONSTS.ENTER_VALID_PASSWORD}
         </Text>
       )}
-      {!credentials.yourName ||
-      !credentials.mobileNumber ||
-      !credentials.password ? (
-        <Text>djsfakl</Text>
-      ) : null}
+      {!allFilled ? <Text>djsfakl</Text> : null}
       <CustomButton
         btnText={COMMON_CONSTS.SIGN_IN}
         styleBtn={styles.buttonStyle}

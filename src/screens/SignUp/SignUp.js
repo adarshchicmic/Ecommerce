@@ -23,32 +23,42 @@ const SignUp = ({ navigation }) => {
   const [validation, setValidation] = useState({
     mobileNumber: false,
     password: false,
-    otp: false,
   });
   const [allfilled, setAllFilled] = useState(true);
-  const { isLoading, error, data: getAllProducts } = useGetAllProductsQuery();
-  const { data: getProducts } = useGetProductQuery('iphone');
+
   const [signUp, signUpResult] = useSignUpMutation();
-  const [signIn, signInResult] = useSignInMutation();
   useEffect(() => {
     if (signUpResult.isLoading === false && signUpResult.isSuccess === true) {
+      if (signUpResult.data.status === 200) {
+        navigation.navigate('Otp', {
+          number: credentials.mobileNumber,
+          name: credentials.yourName,
+        });
+      } else if (signUpResult.data.status === 401) {
+        alert(`${signUpResult.data.message}, 'Please SignIn'`);
+      }
       console.log(signUpResult, 'useEffect walla hai ye');
-      alert(`${signUpResult.data.message}, 'Please SignIn'`);
     }
   }, [signUpResult]);
 
   const handleSubmit = () => {
-    signUp({
-      phone_number: credentials.mobileNumber,
-      name: credentials.yourName,
-      password: credentials.password,
-    });
-    navigation.navigate('Otp');
-    console.log(signUpResult, 'signUp resykr ');
-    console.log(getProducts, 'data1');
-    console.log(isLoading, 'isloading');
-    console.log(error, 'isloading');
-    console.log(getAllProducts, 'isloading');
+    // signUp({
+    //   phone_number: credentials.mobileNumber,
+    //   name: credentials.yourName,
+    //   password: credentials.password,
+    //   detail: 0,
+    // });
+    if (
+      !!credentials.yourName &&
+      !!credentials.mobileNumber &&
+      !!credentials.password &&
+      validation.mobileNumber &&
+      validation.password
+    ) {
+      setAllFilled(true);
+    } else {
+      setAllFilled(false);
+    }
   };
   // this is for setting credentials and validation
   const handleInputYourName = value => {
@@ -72,13 +82,23 @@ const SignUp = ({ navigation }) => {
   // this is for onFocus and onBlur
   const handleOnFocus = inputName => {
     if (inputName === COMMON_CONSTS.YOUR_NAME) {
-      setFocus({ ...focus, focusYourName: true });
+      setFocus({
+        focusMobileNumber: false,
+        focusPassword: false,
+        focusYourName: true,
+      });
     } else if (inputName === COMMON_CONSTS.MOBILE_NUMBER) {
-      setFocus({ ...focus, focusMobileNumber: true });
+      setFocus({
+        focusMobileNumber: true,
+        focusPassword: false,
+        focusYourName: false,
+      });
     } else if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ ...focus, focusPassword: true });
-    } else if (inputName === COMMON_CONSTS.OTP) {
-      setFocus({ ...focus, focusOtp: true });
+      setFocus({
+        focusMobileNumber: false,
+        focusPassword: true,
+        focusYourName: false,
+      });
     }
   };
   const handelOnBlur = inputName => {
@@ -133,7 +153,6 @@ const SignUp = ({ navigation }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
         onChangeTextFunction={handleInputMobileNumber}
-        inputMode={'numeric'}
       />
       {!validation.mobileNumber && credentials.mobileNumber !== '' && (
         <Text style={styles.starStyle}>
@@ -156,20 +175,6 @@ const SignUp = ({ navigation }) => {
         </Text>
       )}
 
-      {showOtp && (
-        <View>
-          <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
-            {COMMON_CONSTS.OTP}
-            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-          </Text>
-          <CustomTextInput
-            styleInputText={styles.TextInputStyle(focus.focusOtp)}
-            onFocusInput={() => handleOnFocus(COMMON_CONSTS.OTP)}
-            onBlurInput={() => handelOnBlur(COMMON_CONSTS.OTP)}
-            onChangeTextFunction={handleInputOtp}
-          />
-        </View>
-      )}
       {!allfilled ? <Text>djsfakl</Text> : null}
       <CustomButton
         btnText={COMMON_CONSTS.CONTINUE}

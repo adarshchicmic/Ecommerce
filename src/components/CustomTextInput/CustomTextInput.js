@@ -13,8 +13,7 @@ const CustomTextInput = ({
   onBlurInput,
   placeholderTextColor,
   onEndEditing,
-  editable,
-  inputeMode = 'text',
+  maxLength,
 }) => {
   return (
     <View style={customInputTextOuterStyle}>
@@ -29,7 +28,8 @@ const CustomTextInput = ({
         onBlur={onBlurInput}
         placeholderTextColor={placeholderTextColor}
         onEndEditing={onEndEditing}
-        inputMode={inputeMode}
+        maxLength={maxLength}
+        // {valueField}
       />
     </View>
   );

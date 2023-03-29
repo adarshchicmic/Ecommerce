@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
-  Text: val => ({
+  text: val => ({
     fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(30) : RFValue(15),
     marginBottom: val === COMMON_CONSTS.SIGN_IN ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
-  TextInputStyle: val => ({
+  textInputStyle: val => ({
     height: hp('5%'),
     width: wp('90%'),
     borderWidth: 1,

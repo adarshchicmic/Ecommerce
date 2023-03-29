@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
@@ -30,9 +30,9 @@ const ForgotPassword = ({ navigation }) => {
   // this is for onFocus and onBlur Functionality
   const handleOnFocus = inputName => {
     if (inputName === COMMON_CONSTS.MOBILE_NUMBER) {
-      setFocus({ ...focus, focusMobileNumber: true });
+      setFocus({ focusPassword: false, focusMobileNumber: true });
     } else if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ ...focus, focusPassword: true });
+      setFocus({ focusMobileNumber: false, focusPassword: true });
     }
   };
   const handelOnBlur = inputName => {
@@ -71,21 +71,14 @@ const ForgotPassword = ({ navigation }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
         onChangeTextFunction={handleInputMobileNumber}
+        keyboardTypeTextInput={'numeric'}
       />
       {!validation.mobileNumber && credentials.mobileNumber !== '' && (
         <Text style={styles.starStyle}>
           {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
         </Text>
       )}
-      <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
-        {COMMON_CONSTS.OTP}
-        <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-      </Text>
-      <CustomTextInput
-        styleInputText={styles.TextInputStyle(focus.focusPassword)}
-        onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
-        onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
-      />
+
       {!validation.password && credentials.password && (
         <Text style={styles.starStyle}>
           {COMMON_CONSTS.ENTER_VALID_PASSWORD}

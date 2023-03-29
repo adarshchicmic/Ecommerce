@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://c196-122-160-165-213.in.ngrok.io/',
+    baseUrl: 'https://0c59-122-160-165-213.in.ngrok.io/',
   }),
   endpoints: builder => ({
     // signUp: builder.mutation({
@@ -23,10 +23,10 @@ export const api = createApi({
       query: products => `products/search?q=${products}`,
     }),
     signUp: builder.mutation({
-      query: ({ phone_number, name, password }) => ({
+      query: ({ phone_number, name, password, detail }) => ({
         url: 'signup/',
         method: 'POST',
-        body: { phone_number, name, password },
+        body: { phone_number, name, password, detail },
       }),
     }),
     signIn: builder.mutation({
