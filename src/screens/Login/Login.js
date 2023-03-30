@@ -23,7 +23,12 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     if (signInResult.isLoading === false && signInResult.isSuccess === true) {
       console.log(signInResult, 'useEffect walla hai ye');
-      alert(`${signInResult.data.message}, 'Please Enter password and verify'`);
+      // alert(`${signInResult.data.message}, 'Please Enter password and verify'`);
+      if (signInResult.data.status === false) {
+        alert(`${signInResult.data.message}, Please try again`);
+      } else if (signInResult.data.status === true) {
+        navigation.navigate('FirstScreen');
+      }
     }
   }, [signInResult]);
   const handlesignInButton = () => {
@@ -104,7 +109,7 @@ const Login = ({ navigation }) => {
         onChangeTextFunction={handleInputMobileNumber}
       />
       {!validation.mobileNumber && credentials.mobileNumber !== '' && (
-        <Text style={styles.starStyle}>
+        <Text style={styles.validationTextStyle}>
           {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
         </Text>
       )}
@@ -119,11 +124,15 @@ const Login = ({ navigation }) => {
         onChangeTextFunction={handleInputPassword}
       />
       {!validation.password && credentials.password && (
-        <Text style={styles.starStyle}>
+        <Text style={styles.validationTextStyle}>
           {COMMON_CONSTS.ENTER_VALID_PASSWORD}
         </Text>
       )}
-      {!allFilled ? <Text>djsfakl</Text> : null}
+      {!allFilled ? (
+        <Text style={styles.lastValidationTextStyle}>
+          {COMMON_CONSTS.ENTER_ALL_FIELDS}
+        </Text>
+      ) : null}
       <CustomButton
         btnText={COMMON_CONSTS.SIGN_IN}
         styleBtn={styles.buttonStyle}

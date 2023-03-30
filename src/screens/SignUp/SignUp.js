@@ -42,12 +42,6 @@ const SignUp = ({ navigation }) => {
   }, [signUpResult]);
 
   const handleSubmit = () => {
-    // signUp({
-    //   phone_number: credentials.mobileNumber,
-    //   name: credentials.yourName,
-    //   password: credentials.password,
-    //   detail: 0,
-    // });
     if (
       !!credentials.yourName &&
       !!credentials.mobileNumber &&
@@ -56,6 +50,12 @@ const SignUp = ({ navigation }) => {
       validation.password
     ) {
       setAllFilled(true);
+      signUp({
+        phone_number: credentials.mobileNumber,
+        name: credentials.yourName,
+        password: credentials.password,
+        detail: 0,
+      });
     } else {
       setAllFilled(false);
     }
@@ -155,7 +155,7 @@ const SignUp = ({ navigation }) => {
         onChangeTextFunction={handleInputMobileNumber}
       />
       {!validation.mobileNumber && credentials.mobileNumber !== '' && (
-        <Text style={styles.starStyle}>
+        <Text style={styles.textValidation}>
           {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
         </Text>
       )}
@@ -170,12 +170,18 @@ const SignUp = ({ navigation }) => {
         onChangeTextFunction={handleInputPassword}
       />
       {!validation.password && credentials.password !== '' && (
-        <Text style={styles.starStyle}>
-          {COMMON_CONSTS.ENTER_VALID_PASSWORD}
+        <Text style={styles.textValidation}>
+          {COMMON_CONSTS.PASSWORD_CONTAIN1}
+          <Text style={styles.starStyle}>
+            {COMMON_CONSTS.PASSWORD_CONTAIN2}
+          </Text>
         </Text>
       )}
-
-      {!allfilled ? <Text>djsfakl</Text> : null}
+      {!allfilled ? (
+        <Text style={styles.textValidationlast}>
+          {COMMON_CONSTS.ENTER_ALL_FIELDS}
+        </Text>
+      ) : null}
       <CustomButton
         btnText={COMMON_CONSTS.CONTINUE}
         styleBtn={styles.buttonStyle}

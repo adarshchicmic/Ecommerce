@@ -25,4 +25,14 @@ export const COMMON_CONSTS = {
   SAVE_CHANGES_AND_SIGN_IN: 'Save changes and sign in',
   PASSWORD_DID_NOT_MATCH: 'Password did not match',
   AUTHENTICATION_REQUIRED: 'Authentication Required',
+  PASSWORD_CONTAIN1:
+    'Password must be at least 8 characters long and contain at least',
+  PASSWORD_CONTAIN2:
+    'one uppercase letter, one, lowercase letter and one digit',
+  ENTER_ALL_FIELDS: 'Enter all necessary fields with validation',
+  ADD_TO_CART: 'Add To Cart',
+  LOGOUT: 'Log out',
+  DO_YOU_REALLY_WANT_TO_LOG_OUT: 'Do you really want to Log out?',
 };
+
+export const BASE_URL = 'https://54ab-122-160-165-213.in.ngrok.io';

@@ -1,28 +1,44 @@
 import { SafeAreaView, Text, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+import { useResendOtpMutation } from '../../services/api';
 const ForgotPassword = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusMobileNumber: false,
-    focusPassword: false,
   });
   const [credentials, setCredentials] = useState({
     mobileNumber: '',
-    password: '',
   });
   const [validation, setValidation] = useState({
     mobileNumber: false,
-    password: false,
   });
+  const [allfilled, setAllFilled] = useState(false);
+  const [resendOtp, resendOtpResult] = useResendOtpMutation();
+  useEffect(() => {
+    if (
+      resendOtpResult.isLoading === false &&
+      resendOtpResult.isSuccess === true
+    ) {
+      console.log(resendOtpResult, 'resendOtpResult');
+    }
+  }, [resendOtpResult]);
+
+  const handleButtonPress = () => {
+    console.log(credentials.mobileNumber, 'ye mobile number hai');
+    resendOtp({ phone_number: credentials.mobileNumber });
+    console.log(resendOtpResult);
+    // navigation.navigate('CreateNewPassword');
+  };
   // this is for setting credentials
   const handleInputMobileNumber = value => {
-    setCredentials({ ...credentials, mobileNumber: value });
+    setCredentials({ mobileNumber: value });
+    console.log(value, 'mobile number hai ye');
+    console.log(credentials.mobileNumber, 'ye mobile number hai');
     const validationMobileNumber = COMMON_CONSTS.MOBILE_REGEX.test(value);
     setValidation({
-      ...validation,
       mobileNumber: validationMobileNumber,
     });
   };
@@ -31,15 +47,11 @@ const ForgotPassword = ({ navigation }) => {
   const handleOnFocus = inputName => {
     if (inputName === COMMON_CONSTS.MOBILE_NUMBER) {
       setFocus({ focusPassword: false, focusMobileNumber: true });
-    } else if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ focusMobileNumber: false, focusPassword: true });
     }
   };
   const handelOnBlur = inputName => {
     if (inputName === COMMON_CONSTS.MOBILE_NUMBER) {
       setFocus({ ...focus, focusMobileNumber: false });
-    } else if (inputName === COMMON_CONSTS.PASSWORD) {
-      setFocus({ ...focus, focusPassword: false });
     }
   };
 
@@ -49,11 +61,6 @@ const ForgotPassword = ({ navigation }) => {
       setValidation({
         ...validation,
         mobileNumber: true,
-      });
-    } else if (!COMMON_CONSTS.PASSWORD_REGEX.test(credentials.password)) {
-      setValidation({
-        ...validation,
-        password: true,
       });
     }
   };
@@ -84,17 +91,11 @@ const ForgotPassword = ({ navigation }) => {
           {COMMON_CONSTS.ENTER_VALID_PASSWORD}
         </Text>
       )}
-
-      {!credentials.yourName ||
-      !credentials.mobileNumber ||
-      !credentials.password ? (
-        <Text>djsfakl</Text>
-      ) : null}
       <CustomButton
         btnText={COMMON_CONSTS.CONTINUE}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => navigation.navigate('CreateNewPassword')}
+        onPressFunction={() => handleButtonPress()}
       />
     </SafeAreaView>
   );

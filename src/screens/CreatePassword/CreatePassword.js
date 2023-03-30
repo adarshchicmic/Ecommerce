@@ -18,6 +18,20 @@ const CreatePassword = ({ navigation }) => {
     passwordAgain: false,
     password: false,
   });
+  const [allfilled, setAllfilled] = useState(false);
+  const handleButtonPress = () => {
+    // navigation.navigate('FirstScreen');
+    if (
+      !!credentials.password &&
+      !!credentials.passwordAgain &&
+      validation.password &&
+      validation.passwordAgain
+    ) {
+      setAllfilled(true);
+    } else {
+      setAllfilled(false);
+    }
+  };
   // this is for setting credentials
   const handleInputPassword = value => {
     setCredentials({ ...credentials, password: value });
@@ -100,14 +114,13 @@ const CreatePassword = ({ navigation }) => {
           {COMMON_CONSTS.PASSWORD_DID_NOT_MATCH}
         </Text>
       )}
-      {!credentials.newPassword || !credentials.password ? (
-        <Text>djsfakl</Text>
-      ) : null}
+
+      {!allfilled ? <Text>hjjkl</Text> : null}
       <CustomButton
         btnText={COMMON_CONSTS.SAVE_CHANGES_AND_SIGN_IN}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => navigation.navigate('FirstScreen')}
+        onPressFunction={() => handleButtonPress()}
       />
     </SafeAreaView>
   );

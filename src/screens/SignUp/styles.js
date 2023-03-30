@@ -5,16 +5,16 @@ import {
 } from 'react-native-responsive-screen';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import { COMMON_CONSTS } from '../../shared/constants';
-import { createEntityAdapter } from '@reduxjs/toolkit';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
+    marginLeft: RFPercentage(2.5),
   },
   Text: val => ({
-    fontSize: val === COMMON_CONSTS.CREATE_ACCOUNT ? RFValue(30) : RFValue(15),
+    fontSize: val === COMMON_CONSTS.CREATE_ACCOUNT ? RFValue(20) : RFValue(10),
     marginBottom: val === COMMON_CONSTS.CREATE_ACCOUNT ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
@@ -32,11 +32,11 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
-    marginTop: hp('5%'),
+    // marginTop: hp('5%'),
   },
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(20),
+    fontSize: RFValue(15),
   },
   starStyle: {
     color: '#ff0000',
@@ -53,6 +53,16 @@ const styles = StyleSheet.create({
   textDonotHaveAccount: {
     fontWeight: '600',
     marginRight: wp('2%'),
+    fontSize: RFValue(10),
+  },
+  textValidation: {
+    fontSize: RFValue(8),
+    color: '#ff0000',
+  },
+  textValidationlast: {
+    fontSize: RFValue(8),
+    color: '#ff0000',
+    marginTop: hp('5%'),
   },
 });
 

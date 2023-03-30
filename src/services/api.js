@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+import { BASE_URL } from '../shared/constants';
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://0c59-122-160-165-213.in.ngrok.io/',
+    baseUrl: BASE_URL,
   }),
   endpoints: builder => ({
     // signUp: builder.mutation({
@@ -17,7 +17,7 @@ export const api = createApi({
     //   }),
     // }),
     getAllProducts: builder.query({
-      query: () => 'products',
+      query: () => 'getproducts',
     }),
     getProduct: builder.query({
       query: products => `products/search?q=${products}`,
@@ -36,6 +36,13 @@ export const api = createApi({
         body: { phone_number, password },
       }),
     }),
+    resendOtp: builder.mutation({
+      query: ({ phone_number }) => ({
+        url: 'resend_otp/',
+        method: 'POST',
+        body: { phone_number },
+      }),
+    }),
   }),
 });
 
@@ -44,4 +51,5 @@ export const {
   useGetProductQuery,
   useSignUpMutation,
   useSignInMutation,
+  useResendOtpMutation,
 } = api;

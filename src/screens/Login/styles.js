@@ -5,7 +5,6 @@ import {
 } from 'react-native-responsive-screen';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import { COMMON_CONSTS } from '../../shared/constants';
-import { createEntityAdapter } from '@reduxjs/toolkit';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
-    marginTop: hp('5%'),
   },
   buttonTextStyle: {
     alignSelf: 'center',
@@ -55,6 +53,15 @@ const styles = StyleSheet.create({
   },
   footerView: {
     marginTop: hp('10%'),
+  },
+  lastValidationTextStyle: {
+    fontSize: RFValue(8),
+    color: '#ff0000',
+    marginTop: hp(5),
+  },
+  validationTextStyle: {
+    fontSize: RFValue(8),
+    color: '#ff0000',
   },
 });
 

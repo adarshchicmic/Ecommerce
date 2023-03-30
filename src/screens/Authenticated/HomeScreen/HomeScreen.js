@@ -1,12 +1,41 @@
-import { View, Text } from 'react-native';
-import React from 'react';
-import { SvgCart } from '../../../Asset/svgIcon';
+import { View, Text, FlatList, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { useGetAllProductsQuery } from '../../../services/api';
+import CustomCard from '../../../components/CustomCard/CustomCard';
 
 const HomeScreen = () => {
+  const [data, setData] = useState([]);
+  const getAllProducts = useGetAllProductsQuery();
+  useEffect(() => {
+    if (
+      getAllProducts?.isLoading === false &&
+      getAllProducts?.isSuccess === true
+    ) {
+      setData(getAllProducts?.data?.data);
+    }
+  }, [getAllProducts]);
+  console.log(data.name);
+  const handleRenderItem = item => {
+    console.log(item, 'ITEM');
+    return (
+      <CustomCard price={item?.price} photo={item?.photo} name={item.name} />
+    );
+  };
   return (
     <View>
       <Text>HomeScreen</Text>
-      <SvgCart height="100%" width="100%" />
+      <FlatList
+        data={data}
+        renderItem={({ item }) => handleRenderItem(item)}
+        keyExtractor={item => item.id}
+        numColumns={2}
+      />
+
+      {/* <Image
+        source={{
+          uri: 'https://54ab-122-160-165-213.in.ngrok.io/media/images/fan.png',
+        }}
+      /> */}
     </View>
   );
 };
