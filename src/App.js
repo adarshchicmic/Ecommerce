@@ -8,9 +8,9 @@ import { api } from './services/api';
 const App = () => {
   return (
     <Provider store={store}>
-      <ApiProvider api={api}>
-        <ApplicationNavigator />
-      </ApiProvider>
+      {/* <ApiProvider api={api}> */}
+      <ApplicationNavigator />
+      {/* </ApiProvider> */}
     </Provider>
   );
 };

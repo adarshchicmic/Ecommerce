@@ -4,14 +4,18 @@ import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+import { useVerifyOtpMutation } from '../../services/api';
 const ForgotPassword = ({ navigation }) => {
   const [focusOtp, setFocusOtp] = useState(false);
   const [otp, setOtp] = useState('');
   const [validation, setValidation] = useState(false);
-
+  const [verifyOtp, verifyOtpResult] = useVerifyOtpMutation();
   // this is for setting credentials
   const handleInputMobileNumber = value => {
     setOtp(value);
+  };
+  const handleButtonPress = () => {
+    verifyOtp({ otp: otp });
   };
 
   // this is for onFocus and onBlur Functionality

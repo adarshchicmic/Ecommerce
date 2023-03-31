@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useGetAllProductsQuery } from '../../../services/api';
 import CustomCard from '../../../components/CustomCard/CustomCard';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const getAllProducts = useGetAllProductsQuery();
   useEffect(() => {
@@ -15,10 +15,20 @@ const HomeScreen = () => {
     }
   }, [getAllProducts]);
   console.log(data.name);
+  const handleAddToCartButton = () => {};
+  const handleWholeCardPress = () => {
+    navigation.navigate('ProductDetail');
+  };
   const handleRenderItem = item => {
     console.log(item, 'ITEM');
     return (
-      <CustomCard price={item?.price} photo={item?.photo} name={item.name} />
+      <CustomCard
+        price={item?.price}
+        photo={item?.photo}
+        name={item.name}
+        onPressAddToCart={handleAddToCartButton}
+        onPressWholeButton={handleWholeCardPress}
+      />
     );
   };
   return (

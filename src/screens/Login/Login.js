@@ -4,7 +4,9 @@ import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
-import { useSignInMutation } from '../../services/api';
+import { useGetNameMutation, useSignInMutation } from '../../services/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUserData, login, logout } from '../../services/feature/userSlice';
 const Login = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusMobileNumber: false,
@@ -13,13 +15,20 @@ const Login = ({ navigation }) => {
   const [credentials, setCredentials] = useState({
     mobileNumber: '',
     password: '',
+    token: '',
+    name: '',
   });
+  const dispatch = useDispatch();
+  const states = useSelector(state => state);
+  console.log(states, 'STATE is');
+  // console.log(number, token, 'store ka data hai ');
   const [validation, setValidation] = useState({
     mobileNumber: false,
     password: false,
   });
   const [allFilled, setAllFilled] = useState(false);
   const [signIn, signInResult] = useSignInMutation();
+  const [getName, getNameResult] = useGetNameMutation();
   useEffect(() => {
     if (signInResult.isLoading === false && signInResult.isSuccess === true) {
       console.log(signInResult, 'useEffect walla hai ye');
@@ -28,14 +37,29 @@ const Login = ({ navigation }) => {
         alert(`${signInResult.data.message}, Please try again`);
       } else if (signInResult.data.status === true) {
         navigation.navigate('FirstScreen');
+        setCredentials({ ...credentials, token: signInResult.data.token });
+        dispatch(
+          addUserData({
+            number: credentials.mobileNumber,
+            token: credentials.token,
+          }),
+        );
+        console.log(credentials.token, 'ye token hai ');
       }
     }
   }, [signInResult]);
+  useEffect(() => {
+    if (getNameResult.isLoading === false && getNameResult.isSuccess === true) {
+      console.log(getNameResult, 'getNameResult ');
+      setCredentials({ ...credentials, name: getNameResult });
+    }
+  }, [getNameResult]);
   const handlesignInButton = () => {
     signIn({
       phone_number: credentials.mobileNumber,
       password: credentials.password,
     });
+
     if (
       !!credentials.mobileNumber &&
       !!credentials.password &&

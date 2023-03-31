@@ -35,4 +35,4 @@ export const COMMON_CONSTS = {
   DO_YOU_REALLY_WANT_TO_LOG_OUT: 'Do you really want to Log out?',
 };
 
-export const BASE_URL = 'https://54ab-122-160-165-213.in.ngrok.io';
+export const BASE_URL = 'https://fc85-122-160-165-213.in.ngrok.io';

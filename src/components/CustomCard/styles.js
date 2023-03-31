@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addToCartBtntextStyle: {
-    backgroundColor: '#ff00a2',
+    backgroundColor: '#f4c430',
     color: '#fff',
     paddingLeft: 30,
     paddingRight: 30,

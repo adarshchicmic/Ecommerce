@@ -20,9 +20,11 @@ const ForgotPassword = ({ navigation }) => {
   useEffect(() => {
     if (
       resendOtpResult.isLoading === false &&
-      resendOtpResult.isSuccess === true
+      resendOtpResult.isSuccess === true &&
+      resendOtpResult.data.status === 200
     ) {
       console.log(resendOtpResult, 'resendOtpResult');
+      navigation.navigate('Otp');
     }
   }, [resendOtpResult]);
 
