@@ -1,11 +1,13 @@
-import { SafeAreaView, Text } from 'react-native';
-import React, { useState } from 'react';
+import { Alert, SafeAreaView, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
-
-const CreatePassword = ({ navigation }) => {
+import { useForgotPasswordMutation } from '../../services/api';
+const CreatePassword = ({ navigation, route }) => {
+  const { number } = route.params;
+  console.log(number, 'number hai yeh');
   const [focus, setFocus] = useState({
     focusPasswordAgain: false,
     focusPassword: false,
@@ -18,7 +20,21 @@ const CreatePassword = ({ navigation }) => {
     passwordAgain: false,
     password: false,
   });
-  const [allfilled, setAllfilled] = useState(false);
+  const [allfilled, setAllfilled] = useState(true);
+  const [forgotPassword, forgotPasswordResult] = useForgotPasswordMutation();
+  console.log(forgotPasswordResult, 'ye forgotPassword result hai ');
+  useEffect(() => {
+    if (
+      forgotPasswordResult.isLoading === false &&
+      forgotPasswordResult.isSuccess === true
+    ) {
+      console.log(forgotPasswordResult, ' ye password result hai');
+      if (forgotPasswordResult.data.status === 200) {
+        Alert(forgotPasswordResult.data.message);
+        navigation.navigate('Login');
+      }
+    }
+  }, [forgotPasswordResult]);
   const handleButtonPress = () => {
     // navigation.navigate('FirstScreen');
     if (
@@ -27,6 +43,13 @@ const CreatePassword = ({ navigation }) => {
       validation.password &&
       validation.passwordAgain
     ) {
+      forgotPassword({
+        reset_password: credentials.password,
+        confirm_password: credentials.passwordAgain,
+        phone_number: number,
+      });
+      console.log(credentials.password, 'ye passwordd hai password 1');
+      console.log(credentials.passwordAgain, 'ye passwordd hai password 2');
       setAllfilled(true);
     } else {
       setAllfilled(false);

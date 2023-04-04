@@ -10,6 +10,7 @@ import 'react-native-gesture-handler';
 import FirstScreen from '../screens/Authenticated/FirstScreen/FirstScreen';
 import Otp from '../screens/Otp/Otp';
 import ProductDetail from '../screens/Authenticated/ProductDetail/ProductDetail';
+import RecentlyViewed from '../screens/Authenticated/RecentlyViewed/RecentlyViewed';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ const ApplicationNavigator = () => {
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="Otp" component={Otp} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
+        <Stack.Screen name="RecentView" component={RecentlyViewed} />
       </Stack.Navigator>
     </NavigationContainer>
   );

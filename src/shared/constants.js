@@ -10,6 +10,7 @@ export const COMMON_CONSTS = {
   ALREADY_HAVE_AN_ACCOUNT: 'Already have an account?',
   SIGN_IN: 'Sign in',
   CREATE_NEW_ACCOUNT: 'Create new account',
+  // eslint-disable-next-line quotes
   DONOT_HAVE_ACCOUNT: "Don't have account?",
   SIGNUP: 'SignUp',
   ALREADY_A_CUSTOMER: 'Already a customer',
@@ -33,6 +34,16 @@ export const COMMON_CONSTS = {
   ADD_TO_CART: 'Add To Cart',
   LOGOUT: 'Log out',
   DO_YOU_REALLY_WANT_TO_LOG_OUT: 'Do you really want to Log out?',
+  BUY_NOW: 'Buy now',
+  HURRY_UP: 'Hurry Up!',
+  ITEMS_LEFT: 'Items left:',
+  ONLY: 'only',
+  PRODUCT_DETAIL: 'Product Detail',
+  PLEASE_ENTER_QUANTITY_MANUALLY: 'Please enter quantity manually',
+  PLUS: '+',
+  MINUS: '-',
+  QUANTITY: 'Quantity: ',
+  REMOVE_FROM_CART: 'Remove from cart',
 };
 
-export const BASE_URL = 'https://fc85-122-160-165-213.in.ngrok.io';
+export const BASE_URL = 'https://bf54-122-160-165-213.in.ngrok.io';

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   Text: val => ({
-    fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(30) : RFValue(15),
+    fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(20) : RFValue(10),
     marginBottom: val === COMMON_CONSTS.SIGN_IN ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(20),
+    fontSize: RFValue(15),
   },
   starStyle: {
     color: '#ff0000',

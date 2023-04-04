@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignSelf: 'center',
-    marginLeft: RFPercentage(2.5),
   },
   Text: val => ({
     fontSize: val === COMMON_CONSTS.CREATE_ACCOUNT ? RFValue(20) : RFValue(10),

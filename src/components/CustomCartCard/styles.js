@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#fff',
     // display: 'flex',
-    width: wp(45),
+    width: wp(90),
     paddingTop: 12,
     paddingBottom: 12,
     paddingRight: 10,
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   },
 
   cardImageStyle: {
+    alignSelf: 'center',
     width: wp(40),
     height: hp(25),
     resizeMode: 'contain',
@@ -31,6 +32,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   priceStyle: {
+    fontSize: RFValue(20),
+    fontWeight: '400',
+  },
+  quantityStyle: {
     fontSize: RFValue(20),
     fontWeight: '400',
   },

@@ -24,7 +24,10 @@ const ForgotPassword = ({ navigation }) => {
       resendOtpResult.data.status === 200
     ) {
       console.log(resendOtpResult, 'resendOtpResult');
-      navigation.navigate('Otp');
+      navigation.navigate('Otp', {
+        screen: 'forgotPassword',
+        number: credentials.mobileNumber,
+      });
     }
   }, [resendOtpResult]);
 

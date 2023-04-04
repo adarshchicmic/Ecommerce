@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../shared/constants';
 
-import userSlice from './feature/userSlice'; // assuming that userSlice is exported from './userSlice'
+import userSlice from '../store /feature/userSlice'; // assuming that userSlice is exported from './userSlice'
 
 // Get the token from the store
 // const { user } = userSlice.getState();
@@ -18,10 +18,11 @@ export const api = createApi({
         userSlice: { user },
       } = getState();
       const { token } = user;
-      console.log('token hai ye ', user);
+      console.log('token hai ye ', token);
+      console.log(user, 'ye user hai ');
       if (token) {
         // ${token}
-        headers.append('authorization', `${token}`);
+        headers.append('authorization', `Token ${token}`);
       }
       return headers;
     },
@@ -38,10 +39,16 @@ export const api = createApi({
     //   }),
     // }),
     getAllProducts: builder.query({
-      query: () => 'getproduct',
+      query: () => 'getproduct/',
     }),
     getProduct: builder.query({
-      query: products => `products/search?q=${products}`,
+      query: products => `getproduct/${products}`,
+    }),
+    getCart: builder.query({
+      query: () => 'cart/',
+    }),
+    getCartItems: builder.query({
+      query: () => 'cart/',
     }),
     getName: builder.mutation({
       query: ({ phone_number }) => ({
@@ -49,6 +56,9 @@ export const api = createApi({
         method: 'POST',
         body: { phone_number },
       }),
+    }),
+    getRecentlyViewed: builder.query({
+      query: () => 'recentlyviewed/',
     }),
     signUp: builder.mutation({
       query: ({ phone_number, name, password, detail }) => ({
@@ -78,6 +88,33 @@ export const api = createApi({
         body: { phone_number, otp },
       }),
     }),
+    addToCart: builder.mutation({
+      query: ({ product_id, quantity }) => ({
+        url: 'cart/',
+        method: 'POST',
+        body: { product_id, quantity },
+      }),
+    }),
+    forgotPassword: builder.mutation({
+      query: ({ reset_password, confirm_password, phone_number }) => ({
+        url: 'forgot_password/',
+        method: 'POST/',
+        body: { reset_password, confirm_password, phone_number },
+      }),
+    }),
+    logOut: builder.mutation({
+      query: () => ({
+        url: 'logout/',
+        method: 'POST',
+      }),
+    }),
+    recentlyViewedItems: builder.mutation({
+      query: ({ product_id }) => ({
+        url: 'recentlyviewed/',
+        method: 'POST',
+        body: { product_id },
+      }),
+    }),
   }),
 });
 
@@ -89,4 +126,11 @@ export const {
   useResendOtpMutation,
   useVerifyOtpMutation,
   useGetNameMutation,
+  useGetCartItemsQuery,
+  useAddToCartMutation,
+  useLogOutMutation,
+  useForgotPasswordMutation,
+  useLazyGetCartQuery,
+  useGetRecentlyViewedQuery,
+  useRecentlyViewedItemsMutation,
 } = api;

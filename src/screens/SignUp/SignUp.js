@@ -31,8 +31,7 @@ const SignUp = ({ navigation }) => {
     if (signUpResult.isLoading === false && signUpResult.isSuccess === true) {
       if (signUpResult.data.status === 200) {
         navigation.navigate('Otp', {
-          number: credentials.mobileNumber,
-          name: credentials.yourName,
+          screen: 'signUp',
         });
       } else if (signUpResult.data.status === 401) {
         alert(`${signUpResult.data.message}, 'Please SignIn'`);

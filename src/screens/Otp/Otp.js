@@ -1,23 +1,44 @@
 import { SafeAreaView, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
 import { useVerifyOtpMutation } from '../../services/api';
-const ForgotPassword = ({ navigation }) => {
+
+const ForgotPassword = ({ navigation, route }) => {
+  const { screen } = route.params;
+  const { number } = route.params;
+  console.log(screen, number, 'ye screen hai, number hai ');
   const [focusOtp, setFocusOtp] = useState(false);
   const [otp, setOtp] = useState('');
   const [validation, setValidation] = useState(false);
   const [verifyOtp, verifyOtpResult] = useVerifyOtpMutation();
   // this is for setting credentials
-  const handleInputMobileNumber = value => {
+  useEffect(() => {
+    if (
+      verifyOtpResult.isLoading === false &&
+      verifyOtpResult.isSuccess === true
+    ) {
+      console.log(verifyOtpResult, 'ye verify Otp result hai');
+      if (verifyOtpResult.data.response === 'success' && screen === 'signUp') {
+        navigation.navigate('Login');
+      } else if (
+        verifyOtpResult.data.response === 'success' &&
+        screen === 'forgotPassword'
+      ) {
+        navigation.navigate('CreateNewPassword', { number: number });
+      }
+    }
+  }, [verifyOtpResult]);
+  const handleButtonPress = () => {
+    verifyOtp({ otp: otp, phone_number: number });
+    console.log('otp continue button pressed');
+  };
+  const handleInputOtp = value => {
+    console.log(value, 'ye value hai ');
     setOtp(value);
   };
-  const handleButtonPress = () => {
-    verifyOtp({ otp: otp });
-  };
-
   // this is for onFocus and onBlur Functionality
   const handleOnFocus = () => {
     setFocusOtp(true);
@@ -40,12 +61,13 @@ const ForgotPassword = ({ navigation }) => {
         onFocusInput={() => handleOnFocus()}
         onBlurInput={() => handelOnBlur()}
         maxLength={4}
+        onChangeTextFunction={handleInputOtp}
       />
       <CustomButton
         btnText={COMMON_CONSTS.CONTINUE}
         styleBtn={styles.buttonStyle}
         styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => navigation.navigate('Login')}
+        onPressFunction={() => handleButtonPress()}
       />
     </SafeAreaView>
   );

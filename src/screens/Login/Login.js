@@ -4,9 +4,11 @@ import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import { COMMON_CONSTS } from '../../shared/constants';
+
 import { useGetNameMutation, useSignInMutation } from '../../services/api';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUserData, login, logout } from '../../services/feature/userSlice';
+
+import { addUserData } from '../../store /feature/userSlice';
 const Login = ({ navigation }) => {
   const [focus, setFocus] = useState({
     focusMobileNumber: false,
@@ -16,7 +18,6 @@ const Login = ({ navigation }) => {
     mobileNumber: '',
     password: '',
     token: '',
-    name: '',
   });
   const dispatch = useDispatch();
   const states = useSelector(state => state);
@@ -26,7 +27,7 @@ const Login = ({ navigation }) => {
     mobileNumber: false,
     password: false,
   });
-  const [allFilled, setAllFilled] = useState(false);
+  const [allFilled, setAllFilled] = useState(true);
   const [signIn, signInResult] = useSignInMutation();
   const [getName, getNameResult] = useGetNameMutation();
   useEffect(() => {
@@ -41,25 +42,20 @@ const Login = ({ navigation }) => {
         dispatch(
           addUserData({
             number: credentials.mobileNumber,
-            token: credentials.token,
+            token: signInResult.data.token,
           }),
         );
         console.log(credentials.token, 'ye token hai ');
       }
     }
   }, [signInResult]);
-  useEffect(() => {
-    if (getNameResult.isLoading === false && getNameResult.isSuccess === true) {
-      console.log(getNameResult, 'getNameResult ');
-      setCredentials({ ...credentials, name: getNameResult });
-    }
-  }, [getNameResult]);
+  // useEffect(() => {}, [getNameResult]);
   const handlesignInButton = () => {
     signIn({
       phone_number: credentials.mobileNumber,
       password: credentials.password,
     });
-
+    getName({ phone_number: credentials.mobileNumber });
     if (
       !!credentials.mobileNumber &&
       !!credentials.password &&
