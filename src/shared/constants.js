@@ -49,9 +49,18 @@ export const COMMON_CONSTS = {
   ORDER_HISTORY: 'Order History',
   TRANSACTION_HISTORY: 'Transaction History',
   HELLO: 'Hello!',
+  ADDRESS: 'Address',
+  ORDER_SUMMARY: 'Order Summary',
+  CASH_ON_DELIVERY: 'Cash On Delivery',
+  PAY_WITH_STRIPE: 'Pay with Stripe',
+  TOTAL_AMOUNT: 'Total Amount: ',
+  PROCEED_TO_CHECKOUT: 'Proceed To Checkout',
+  ADDRESS_REGEX: /^\d+\s[A-z]+\s[A-z]+/,
+  ADDRESS_MUST_CONTAIN:
+    'Address must contain atleast 1 digit and 2 words eg. 123 Main St',
 };
 
-export const BASE_URL = 'https://e77e-122-160-165-213.in.ngrok.io';
+export const BASE_URL = 'https://59b1-122-160-165-213.in.ngrok.io/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';

@@ -1,4 +1,10 @@
-import { Alert, SafeAreaView, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
@@ -20,11 +26,17 @@ const CreatePassword = ({ navigation, route }) => {
     passwordAgain: false,
     password: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
   const [allfilled, setAllfilled] = useState(true);
   const [forgotPassword, forgotPasswordResult] = useForgotPasswordMutation();
   console.log(forgotPasswordResult, 'ye forgot Password ka result hai ');
 
   useEffect(() => {
+    if (forgotPasswordResult.isLoading === true) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
     if (
       forgotPasswordResult.isLoading === false &&
       forgotPasswordResult.isSuccess === true
@@ -103,54 +115,62 @@ const CreatePassword = ({ navigation, route }) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
-        {COMMON_CONSTS.CREATE_NEW_PASSWORD}
-      </Text>
+      {isLoading ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <View>
+          <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
+            {COMMON_CONSTS.CREATE_NEW_PASSWORD}
+          </Text>
 
-      <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
-        {COMMON_CONSTS.PASSWORD}
-        <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-      </Text>
-      <CustomTextInput
-        styleInputText={styles.TextInputStyle(focus.focusPassword)}
-        onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
-        onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
-        onChangeTextFunction={handleInputPassword}
-        secureTextEntry={true}
-      />
-      {!validation.password && credentials.password && (
-        <Text style={styles.starStyle}>
-          {COMMON_CONSTS.ENTER_VALID_PASSWORD}
-        </Text>
-      )}
-      <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
-        {COMMON_CONSTS.PASSWORD_AGAIN}
-        <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-      </Text>
-      <CustomTextInput
-        styleInputText={styles.TextInputStyle(focus.focusPasswordAgain)}
-        onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD_AGAIN)}
-        onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD_AGAIN)}
-        onChangeTextFunction={handleInputNewPassword}
-        secureTextEntry={true}
-      />
-      {!validation.passwordAgain && credentials.passwordAgain && (
-        <Text style={styles.starStyle}>
-          {COMMON_CONSTS.PASSWORD_DID_NOT_MATCH}
-        </Text>
-      )}
+          <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
+            {COMMON_CONSTS.PASSWORD}
+            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+          </Text>
+          <CustomTextInput
+            styleInputText={styles.TextInputStyle(focus.focusPassword)}
+            onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
+            onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
+            onChangeTextFunction={handleInputPassword}
+            secureTextEntry={true}
+          />
+          {!validation.password && credentials.password && (
+            <Text style={styles.starStyle}>
+              {COMMON_CONSTS.ENTER_VALID_PASSWORD}
+            </Text>
+          )}
+          <Text style={styles.Text(COMMON_CONSTS.PASSWORD)}>
+            {COMMON_CONSTS.PASSWORD_AGAIN}
+            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+          </Text>
+          <CustomTextInput
+            styleInputText={styles.TextInputStyle(focus.focusPasswordAgain)}
+            onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD_AGAIN)}
+            onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD_AGAIN)}
+            onChangeTextFunction={handleInputNewPassword}
+            secureTextEntry={true}
+          />
+          {!validation.passwordAgain && credentials.passwordAgain && (
+            <Text style={styles.starStyle}>
+              {COMMON_CONSTS.PASSWORD_DID_NOT_MATCH}
+            </Text>
+          )}
 
-      {!allfilled ? (
-        <Text style={styles.textValidationlast}>
-          {COMMON_CONSTS.ENTER_ALL_FIELDS}
-        </Text>
-      ) : null}
-      <CustomButton
-        btnText={COMMON_CONSTS.SAVE_CHANGES_AND_SIGN_IN}
-        styleBtn={styles.buttonStyle}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => handleButtonPress()}
-      />
+          {!allfilled ? (
+            <Text style={styles.textValidationlast}>
+              {COMMON_CONSTS.ENTER_ALL_FIELDS}
+            </Text>
+          ) : null}
+          <CustomButton
+            btnText={COMMON_CONSTS.SAVE_CHANGES_AND_SIGN_IN}
+            styleBtn={styles.buttonStyle}
+            styleTxt={styles.buttonTextStyle}
+            onPressFunction={() => handleButtonPress()}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

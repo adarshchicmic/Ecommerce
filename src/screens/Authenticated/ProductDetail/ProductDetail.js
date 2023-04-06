@@ -34,7 +34,10 @@ const ProductDetail = ({ navigation, route }) => {
   }, [product]);
 
   const handleBuyNowButtonPress = () => {
-    navigation.navigate('PaymentScreen');
+    navigation.navigate('OrderSummaryPage', {
+      id: productId,
+      quantity: quantity,
+    });
   };
 
   const handleAddToCartButton = () => {

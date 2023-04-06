@@ -4,7 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
-import { COMMON_CONSTS } from '../../shared/constants';
+import { COMMON_CONSTS } from '../../../shared/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
   },
-  Text: val => ({
-    fontSize: val === COMMON_CONSTS.CREATE_ACCOUNT ? RFValue(20) : RFValue(10),
-    marginBottom: val === COMMON_CONSTS.CREATE_ACCOUNT ? hp('10%') : RFValue(5),
+  text: val => ({
+    fontSize: val === COMMON_CONSTS.ORDER_SUMMARY ? RFValue(20) : RFValue(12),
+    marginBottom: val === COMMON_CONSTS.ORDER_SUMMARY ? hp(10) : RFValue(5),
     fontWeight: '500',
   }),
   TextInputStyle: val => ({
-    height: hp('5%'),
-    width: wp('90%'),
+    height: hp('10%'),
+    width: wp('95%'),
     borderWidth: 1,
     borderColor: val ? '#f4c430' : '#000000',
     marginBottom: hp('2%'),
@@ -29,13 +29,12 @@ const styles = StyleSheet.create({
   }),
   buttonStyle: {
     height: hp('5%'),
-    width: wp('90%'),
+    width: wp('95%'),
     borderWidth: 2,
     borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     borderRadius: 6,
-    // marginTop: hp('5%'),
   },
   buttonTextStyle: {
     alignSelf: 'center',
@@ -44,28 +43,18 @@ const styles = StyleSheet.create({
   starStyle: {
     color: '#ff0000',
   },
-  doNotHaveAccountContainer: {
+  cashOnDeliveryContainer: {
     flexDirection: 'row',
-    marginTop: hp('10%'),
-    justifyContent: 'center',
   },
-  createNewAccountStyle: {
+  payWithStripeTextStyle: {
     color: '#0000ff',
-    fontWeight: '600',
   },
-  textDonotHaveAccount: {
-    fontWeight: '600',
-    marginRight: wp('2%'),
-    fontSize: RFValue(10),
+  payWithStripeFullButton: {
+    margin: hp(5),
   },
-  textValidation: {
+  validationTextStyle: {
     fontSize: RFValue(8),
     color: '#ff0000',
-  },
-  textValidationlast: {
-    fontSize: RFValue(8),
-    color: '#ff0000',
-    marginTop: hp('5%'),
   },
 });
 

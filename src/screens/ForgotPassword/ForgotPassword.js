@@ -1,4 +1,10 @@
-import { SafeAreaView, Text, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
@@ -15,9 +21,15 @@ const ForgotPassword = ({ navigation }) => {
   const [validation, setValidation] = useState({
     mobileNumber: false,
   });
+  const [isLoading, setIsLoading] = useState(false);
   const [allfilled, setAllFilled] = useState(false);
   const [resendOtp, resendOtpResult] = useResendOtpMutation();
   useEffect(() => {
+    if (resendOtpResult.isLoading === true) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
     if (
       resendOtpResult.isLoading === false &&
       resendOtpResult.isSuccess === true &&
@@ -62,37 +74,45 @@ const ForgotPassword = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
-        {COMMON_CONSTS.FORGOT_PASSWORD}
-      </Text>
-      <Text style={styles.Text(COMMON_CONSTS.MOBILE_NUMBER)}>
-        {COMMON_CONSTS.MOBILE_NUMBER}
-        <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-      </Text>
-      <CustomTextInput
-        styleInputText={styles.TextInputStyle(focus.focusMobileNumber)}
-        onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
-        onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
-        onChangeTextFunction={handleInputMobileNumber}
-        keyboardTypeTextInput={'numeric'}
-      />
-      {!validation.mobileNumber && credentials.mobileNumber !== '' && (
-        <Text style={styles.starStyle}>
-          {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
-        </Text>
-      )}
+      {isLoading ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <View>
+          <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
+            {COMMON_CONSTS.FORGOT_PASSWORD}
+          </Text>
+          <Text style={styles.Text(COMMON_CONSTS.MOBILE_NUMBER)}>
+            {COMMON_CONSTS.MOBILE_NUMBER}
+            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+          </Text>
+          <CustomTextInput
+            styleInputText={styles.TextInputStyle(focus.focusMobileNumber)}
+            onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
+            onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
+            onChangeTextFunction={handleInputMobileNumber}
+            keyboardTypeTextInput={'numeric'}
+          />
+          {!validation.mobileNumber && credentials.mobileNumber !== '' && (
+            <Text style={styles.starStyle}>
+              {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
+            </Text>
+          )}
 
-      {!validation.password && credentials.password && (
-        <Text style={styles.starStyle}>
-          {COMMON_CONSTS.ENTER_VALID_PASSWORD}
-        </Text>
+          {!validation.password && credentials.password && (
+            <Text style={styles.starStyle}>
+              {COMMON_CONSTS.ENTER_VALID_PASSWORD}
+            </Text>
+          )}
+          <CustomButton
+            btnText={COMMON_CONSTS.CONTINUE}
+            styleBtn={styles.buttonStyle}
+            styleTxt={styles.buttonTextStyle}
+            onPressFunction={() => handleButtonPress()}
+          />
+        </View>
       )}
-      <CustomButton
-        btnText={COMMON_CONSTS.CONTINUE}
-        styleBtn={styles.buttonStyle}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={() => handleButtonPress()}
-      />
     </SafeAreaView>
   );
 };

@@ -51,6 +51,7 @@ const Profile = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.headerTextStyle}>
         {COMMON_CONSTS.HELLO}
+        {'   '}
         {name}
       </Text>
       <CustomButton

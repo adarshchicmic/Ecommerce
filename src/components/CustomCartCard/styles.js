@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 6,
   },
   addToCartBtntextStyle: {
     backgroundColor: '#f4c430',

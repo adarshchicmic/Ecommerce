@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     marginTop: val === false ? hp(2) : hp(2),
+    borderRadius: 6,
   }),
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(20),
+    fontSize: RFValue(15),
   },
   headerTextStyle: {
     alignSelf: 'center',

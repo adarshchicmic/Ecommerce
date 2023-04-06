@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: hp('2%'),
     color: '#000000',
     padding: 9,
+    borderRadius: 6,
   }),
   buttonStyle: {
     height: hp('5%'),
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
+    borderRadius: 6,
   },
   buttonTextStyle: {
     alignSelf: 'center',

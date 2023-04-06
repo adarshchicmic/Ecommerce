@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     borderColor: val ? '#f4c430' : '#000000',
     marginBottom: hp('2%'),
     color: '#000000',
+    borderRadius: 6,
   }),
   buttonStyle: {
     height: hp('5%'),
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     marginTop: hp('5%'),
+    borderRadius: 6,
   },
   buttonTextStyle: {
     alignSelf: 'center',

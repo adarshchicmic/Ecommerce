@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import {
   useLazyGetCartQuery,
@@ -7,6 +7,9 @@ import {
 import CustomCartCard from '../../../components/CustomCartCard/CustomCartCard';
 import { useIsFocused } from '@react-navigation/native';
 import { useRemoveFromCartMutation } from '../../../services/api';
+import CustomButton from '../../../components/CustomButton/CustomButton';
+import styles from './styles';
+import { COMMON_CONSTS } from '../../../shared/constants';
 const Cart = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [getCart, { data, isSuccess, isLoading }] = useLazyGetCartQuery();
@@ -17,8 +20,14 @@ const Cart = ({ navigation }) => {
   console.log(cartItems, 'Ye cart Items hai ');
   const [cartItemsDetail, setCartItemsDetail] = useState([]);
   const [totalPrice, setTotalPrice] = useState('');
+  const [isLoadingg, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (isLoading === true) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
     if (isFocused) {
       cart = getCart();
       console.log(data, 'ye cart item from lazy query hai ');
@@ -40,6 +49,9 @@ const Cart = ({ navigation }) => {
       productId: id,
     });
   };
+  const handleCheckoutPress = () => {
+    navigation.navigate('OrderSummaryPage', { productId: id });
+  };
   const handleRenderItems = items => {
     return (
       <CustomCartCard
@@ -53,16 +65,29 @@ const Cart = ({ navigation }) => {
     );
   };
   return (
-    <View>
-      <Text>This is your Cart </Text>
-      <Text>
-        <Text>Total Amount:</Text>
-        {totalPrice}{' '}
-      </Text>
-      {isSuccess && (
+    <View style={styles.container}>
+      {isLoadingg ? (
+        <View>
+          <ActivityIndicator />
+        </View>
+      ) : (
         <FlatList
           data={cartItemsDetail}
           renderItem={({ item }) => handleRenderItems(item)}
+          ListFooterComponent={
+            <View>
+              <Text style={styles.totalAmountStyle}>
+                {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
+                {totalPrice}
+              </Text>
+              <CustomButton
+                styleBtn={styles.buttonStyle}
+                styleTxt={styles.buttonTextStyle}
+                btnText={COMMON_CONSTS.PROCEED_TO_CHECKOUT}
+                onPressFunction={handleCheckoutPress}
+              />
+            </View>
+          }
         />
       )}
     </View>

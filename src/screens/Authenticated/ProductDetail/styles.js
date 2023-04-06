@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     height: hp('5%'),
-    width: wp('40%'),
+    width: wp('50%'),
     borderWidth: 2,
     borderColor: 'black',
     justifyContent: 'center',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(20),
+    fontSize: RFValue(14),
   },
   twoButtonStyle: {
     flexDirection: 'row',

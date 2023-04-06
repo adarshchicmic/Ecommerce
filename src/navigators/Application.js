@@ -13,6 +13,7 @@ import ProductDetail from '../screens/Authenticated/ProductDetail/ProductDetail'
 import RecentlyViewed from '../screens/Authenticated/RecentlyViewed/RecentlyViewed';
 import PaymentScreen from '../screens/Authenticated/PaymentScreen/PaymentScreen';
 import { useSelector } from 'react-redux';
+import OrderSummary from '../screens/Authenticated/OrderSummaryPage/OrderSummary';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const ApplicationNavigator = () => {
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
             <Stack.Screen name="RecentView" component={RecentlyViewed} />
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
+            <Stack.Screen name="OrderSummaryPage" component={OrderSummary} />
           </>
         )}
       </Stack.Navigator>

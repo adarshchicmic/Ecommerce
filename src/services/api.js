@@ -121,6 +121,13 @@ export const api = createApi({
         body: { product_id },
       }),
     }),
+    createCheckOut: builder.mutation({
+      query: ({ product_id, quantity, address }) => ({
+        url: 'create_checkout/',
+        method: 'POST',
+        body: { product_id, quantity, address },
+      }),
+    }),
   }),
 });
 
@@ -140,4 +147,5 @@ export const {
   useGetRecentlyViewedQuery,
   useRecentlyViewedItemsMutation,
   useRemoveFromCartMutation,
+  useCreateCheckOutMutation,
 } = api;
