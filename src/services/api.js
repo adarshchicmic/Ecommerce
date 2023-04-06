@@ -95,10 +95,16 @@ export const api = createApi({
         body: { product_id, quantity },
       }),
     }),
+    removeFromCart: builder.mutation({
+      query: ({ id }) => ({
+        url: `cart/${id}/`,
+        method: 'DELETE',
+      }),
+    }),
     forgotPassword: builder.mutation({
       query: ({ reset_password, confirm_password, phone_number }) => ({
         url: 'forgot_password/',
-        method: 'POST/',
+        method: 'POST',
         body: { reset_password, confirm_password, phone_number },
       }),
     }),
@@ -133,4 +139,5 @@ export const {
   useLazyGetCartQuery,
   useGetRecentlyViewedQuery,
   useRecentlyViewedItemsMutation,
+  useRemoveFromCartMutation,
 } = api;

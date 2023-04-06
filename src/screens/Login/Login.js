@@ -51,17 +51,17 @@ const Login = ({ navigation }) => {
   }, [signInResult]);
   // useEffect(() => {}, [getNameResult]);
   const handlesignInButton = () => {
-    signIn({
-      phone_number: credentials.mobileNumber,
-      password: credentials.password,
-    });
-    getName({ phone_number: credentials.mobileNumber });
     if (
       !!credentials.mobileNumber &&
       !!credentials.password &&
       validation.mobileNumber &&
       validation.password
     ) {
+      getName({ phone_number: credentials.mobileNumber });
+      signIn({
+        phone_number: credentials.mobileNumber,
+        password: credentials.password,
+      });
       setAllFilled(true);
     } else {
       setAllFilled(false);
@@ -100,19 +100,6 @@ const Login = ({ navigation }) => {
     }
   };
 
-  const validate = () => {
-    if (!COMMON_CONSTS.MOBILE_REGEX.test(credentials.mobileNumber)) {
-      setValidation({
-        ...validation,
-        mobileNumber: true,
-      });
-    } else if (!COMMON_CONSTS.PASSWORD_REGEX.test(credentials.password)) {
-      setValidation({
-        ...validation,
-        password: true,
-      });
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
@@ -142,10 +129,12 @@ const Login = ({ navigation }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
         onChangeTextFunction={handleInputPassword}
+        secureTextEntry={true}
       />
       {!validation.password && credentials.password && (
         <Text style={styles.validationTextStyle}>
-          {COMMON_CONSTS.ENTER_VALID_PASSWORD}
+          {COMMON_CONSTS.PASSWORD_CONTAIN1}
+          {COMMON_CONSTS.PASSWORD_CONTAIN2}
         </Text>
       )}
       {!allFilled ? (

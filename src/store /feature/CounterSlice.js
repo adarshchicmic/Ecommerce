@@ -12,7 +12,7 @@ export const counterSlice = createSlice({
       }
     },
     decrement: state => {
-      if (state.value > 0) {
+      if (state.value > 1) {
         state.value -= 1;
       }
     },

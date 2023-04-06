@@ -33,7 +33,7 @@ const SignUp = ({ navigation }) => {
         navigation.navigate('Otp', {
           screen: 'signUp',
         });
-      } else if (signUpResult.data.status === 401) {
+      } else if (signUpResult.data.status === false) {
         alert(`${signUpResult.data.message}, 'Please SignIn'`);
       }
       console.log(signUpResult, 'useEffect walla hai ye');
@@ -112,22 +112,6 @@ const SignUp = ({ navigation }) => {
     }
   };
 
-  const validate = () => {
-    credentials.yourName ||
-      credentials.mobileNumber ||
-      (credentials.password && setAllFilled(true));
-    if (!COMMON_CONSTS.MOBILE_REGEX.test(credentials.mobileNumber)) {
-      setValidation({
-        ...validation,
-        mobileNumber: true,
-      });
-    } else if (!COMMON_CONSTS.PASSWORD_REGEX.test(credentials.password)) {
-      setValidation({
-        ...validation,
-        password: true,
-      });
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.Text(COMMON_CONSTS.CREATE_ACCOUNT)}>
@@ -167,6 +151,7 @@ const SignUp = ({ navigation }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
         onChangeTextFunction={handleInputPassword}
+        secureTextEntry={true}
       />
       {!validation.password && credentials.password !== '' && (
         <Text style={styles.textValidation}>

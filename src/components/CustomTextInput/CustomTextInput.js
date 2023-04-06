@@ -14,6 +14,7 @@ const CustomTextInput = ({
   placeholderTextColor,
   onEndEditing,
   maxLength,
+  secureTextEntry,
 }) => {
   return (
     <View style={customInputTextOuterStyle}>
@@ -29,6 +30,7 @@ const CustomTextInput = ({
         placeholderTextColor={placeholderTextColor}
         onEndEditing={onEndEditing}
         maxLength={maxLength}
+        secureTextEntry={secureTextEntry}
         // {valueField}
       />
     </View>

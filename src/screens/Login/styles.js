@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   Text: val => ({
-    fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(20) : RFValue(10),
+    fontSize: val === COMMON_CONSTS.SIGN_IN ? RFValue(20) : RFValue(14),
     marginBottom: val === COMMON_CONSTS.SIGN_IN ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     borderColor: val ? '#f4c430' : '#000000',
     marginBottom: hp('2%'),
     color: '#000000',
+    padding: 9,
   }),
   buttonStyle: {
     height: hp('5%'),

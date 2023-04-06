@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     borderColor: val ? '#f4c430' : '#000000',
     marginBottom: hp('2%'),
     color: '#000000',
+    padding: 9,
   }),
   buttonStyle: {
     height: hp('5%'),

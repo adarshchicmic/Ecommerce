@@ -12,6 +12,8 @@ const HomeScreen = ({ navigation }) => {
   const getAllProducts = useGetAllProductsQuery();
   const [recentlyViewed, recentlyViewedResult] =
     useRecentlyViewedItemsMutation();
+
+  console.log(recentlyViewedResult, 'ye recently viewed ka result hai');
   const [addToCart, addToCartResult] = useAddToCartMutation();
   console.log(addToCartResult, 'ye add to cart ka result aha');
   useEffect(() => {
@@ -34,6 +36,7 @@ const HomeScreen = ({ navigation }) => {
     console.log(id, 'ye id hai button called ');
   };
   const handleWholeCardPress = id => {
+    recentlyViewed({ product_id: id });
     navigation.navigate('ProductDetail', { productId: id });
   };
   const handleRenderItem = item => {
@@ -50,19 +53,12 @@ const HomeScreen = ({ navigation }) => {
   };
   return (
     <View>
-      <Text>HomeScreen</Text>
       <FlatList
         data={data}
         renderItem={({ item }) => handleRenderItem(item)}
         keyExtractor={item => item.id}
         numColumns={2}
       />
-
-      {/* <Image
-        source={{
-          uri: 'https://54ab-122-160-165-213.in.ngrok.io/media/images/fan.png',
-        }}
-      /> */}
     </View>
   );
 };

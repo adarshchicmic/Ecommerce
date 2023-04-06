@@ -13,22 +13,33 @@ import styles from './styles';
 import { increment, decrement } from '../../../store /feature/CounterSlice';
 import CustomButton from '../../../components/CustomButton/CustomButton';
 import { useDispatch, useSelector } from 'react-redux';
-
-const ProductDetail = ({ route }) => {
+import { useAddToCartMutation } from '../../../services/api';
+const ProductDetail = ({ navigation, route }) => {
   const [productDetail, setProductDetail] = useState({});
+
   const { productId } = route.params;
-  const myState = useSelector(state => state.counter);
-  console.log(myState);
+  const quantity = useSelector(state => state.counter.value);
+
   console.log(productId);
   const product = useGetProductQuery(productId);
+  const [addToCart, addToCartResult] = useAddToCartMutation();
+  console.log(addToCartResult, 'ye add to cart result hai');
   console.log(product);
   const dispatch = useDispatch();
   useEffect(() => {
     if (product.isLoading === false && product.isSuccess === true) {
-      console.log(product.data.data);
+      console.log(product.data.data, 'ye product ddata.data hai ');
       setProductDetail(product?.data?.data);
     }
   }, [product]);
+
+  const handleBuyNowButtonPress = () => {
+    navigation.navigate('PaymentScreen');
+  };
+
+  const handleAddToCartButton = () => {
+    addToCart({ product_id: productDetail.id, quantity: quantity });
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -64,7 +75,7 @@ const ProductDetail = ({ route }) => {
         <TouchableOpacity onPress={() => dispatch(increment())}>
           <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.PLUS}</Text>
         </TouchableOpacity>
-        <Text style={styles.quantityTextStyle}>{myState.value}</Text>
+        <Text style={styles.quantityTextStyle}>{quantity}</Text>
         <TouchableOpacity onPress={() => dispatch(decrement())}>
           <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.MINUS}</Text>
         </TouchableOpacity>
@@ -75,11 +86,13 @@ const ProductDetail = ({ route }) => {
           styleBtn={styles.buttonStyle}
           btnText={COMMON_CONSTS.ADD_TO_CART}
           styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleAddToCartButton}
         />
         <CustomButton
           styleBtn={styles.buttonStyle}
           btnText={COMMON_CONSTS.BUY_NOW}
           styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleBuyNowButtonPress}
         />
       </View>
     </SafeAreaView>

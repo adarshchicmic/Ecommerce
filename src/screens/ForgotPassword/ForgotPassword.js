@@ -60,15 +60,6 @@ const ForgotPassword = ({ navigation }) => {
     }
   };
 
-  const validate = () => {
-    navigation.navigate('CreateNewPassword');
-    if (!COMMON_CONSTS.MOBILE_REGEX.test(credentials.mobileNumber)) {
-      setValidation({
-        ...validation,
-        mobileNumber: true,
-      });
-    }
-  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>

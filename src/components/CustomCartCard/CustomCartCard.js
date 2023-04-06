@@ -9,6 +9,7 @@ const CustomCartCard = ({
   price,
   totalPrice,
   quantity,
+  show,
   onPressWholeButton = () => {},
   onPressAddToCart = () => {},
   productId,
@@ -35,14 +36,16 @@ const CustomCartCard = ({
           {COMMON_CONSTS.QUANTITY}
           {quantity}
         </Text>
-        {/* <TouchableOpacity
-          style={styles.addToCartBtnStyle}
-          onPress={onPressAddToCart}
-        >
-          <Text style={styles.addToCartBtntextStyle}>
-            {COMMON_CONSTS.ADD_TO_CART}
-          </Text>
-        </TouchableOpacity> */}
+        {show && (
+          <TouchableOpacity
+            style={styles.addToCartBtnStyle}
+            onPress={onPressAddToCart}
+          >
+            <Text style={styles.addToCartBtntextStyle}>
+              {COMMON_CONSTS.REMOVE_FROM_CART}
+            </Text>
+          </TouchableOpacity>
+        )}
       </TouchableOpacity>
     </View>
   );

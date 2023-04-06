@@ -22,7 +22,8 @@ const CreatePassword = ({ navigation, route }) => {
   });
   const [allfilled, setAllfilled] = useState(true);
   const [forgotPassword, forgotPasswordResult] = useForgotPasswordMutation();
-  console.log(forgotPasswordResult, 'ye forgotPassword result hai ');
+  console.log(forgotPasswordResult, 'ye forgot Password ka result hai ');
+
   useEffect(() => {
     if (
       forgotPasswordResult.isLoading === false &&
@@ -30,7 +31,6 @@ const CreatePassword = ({ navigation, route }) => {
     ) {
       console.log(forgotPasswordResult, ' ye password result hai');
       if (forgotPasswordResult.data.status === 200) {
-        Alert(forgotPasswordResult.data.message);
         navigation.navigate('Login');
       }
     }
@@ -116,6 +116,7 @@ const CreatePassword = ({ navigation, route }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD)}
         onChangeTextFunction={handleInputPassword}
+        secureTextEntry={true}
       />
       {!validation.password && credentials.password && (
         <Text style={styles.starStyle}>
@@ -131,6 +132,7 @@ const CreatePassword = ({ navigation, route }) => {
         onFocusInput={() => handleOnFocus(COMMON_CONSTS.PASSWORD_AGAIN)}
         onBlurInput={() => handelOnBlur(COMMON_CONSTS.PASSWORD_AGAIN)}
         onChangeTextFunction={handleInputNewPassword}
+        secureTextEntry={true}
       />
       {!validation.passwordAgain && credentials.passwordAgain && (
         <Text style={styles.starStyle}>
@@ -138,7 +140,11 @@ const CreatePassword = ({ navigation, route }) => {
         </Text>
       )}
 
-      {!allfilled ? <Text>hjjkl</Text> : null}
+      {!allfilled ? (
+        <Text style={styles.textValidationlast}>
+          {COMMON_CONSTS.ENTER_ALL_FIELDS}
+        </Text>
+      ) : null}
       <CustomButton
         btnText={COMMON_CONSTS.SAVE_CHANGES_AND_SIGN_IN}
         styleBtn={styles.buttonStyle}

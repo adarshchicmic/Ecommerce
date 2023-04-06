@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
   footerView: {
     marginTop: hp('10%'),
   },
+  textValidationlast: {
+    fontSize: RFValue(8),
+    color: '#ff0000',
+    marginTop: hp('5%'),
+  },
 });
 
 export default styles;

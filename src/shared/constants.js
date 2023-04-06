@@ -44,6 +44,14 @@ export const COMMON_CONSTS = {
   MINUS: '-',
   QUANTITY: 'Quantity: ',
   REMOVE_FROM_CART: 'Remove from cart',
+  RECENTLY_VIEWED_ITEMS: 'Recently Viewed Items',
+  TOTAL_ITEMS: 'Total Items: ',
+  ORDER_HISTORY: 'Order History',
+  TRANSACTION_HISTORY: 'Transaction History',
+  HELLO: 'Hello!',
 };
 
-export const BASE_URL = 'https://bf54-122-160-165-213.in.ngrok.io';
+export const BASE_URL = 'https://e77e-122-160-165-213.in.ngrok.io';
+
+export const STRIPE_API_KEY =
+  'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';
