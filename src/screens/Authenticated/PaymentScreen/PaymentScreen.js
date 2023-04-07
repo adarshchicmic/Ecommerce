@@ -1,16 +1,21 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import WebView from 'react-native-webview';
-
-const PaymentScreen = () => {
+import styles from './styles';
+const PaymentScreen = ({ route }) => {
+  const { url } = route.params;
+  const { sessionId } = route.params;
   return (
     <View>
       <Text>PaymentScreen</Text>
-      <WebView
-        source={{
-          uri: 'https://github.com/facebook/react-native',
-        }}
-      />
+      <View style={styles.webViewHeight}>
+        <WebView
+          source={{
+            uri: url,
+            method: e => console.log(e, 'STRIPE PAYMENT'),
+          }}
+        />
+      </View>
     </View>
   );
 };

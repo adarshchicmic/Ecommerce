@@ -60,7 +60,7 @@ export const COMMON_CONSTS = {
     'Address must contain atleast 1 digit and 2 words eg. 123 Main St',
 };
 
-export const BASE_URL = 'https://59b1-122-160-165-213.in.ngrok.io/';
+export const BASE_URL = 'https://cb43-122-160-165-213.in.ngrok.io/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';

@@ -49,6 +49,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/safeareacontext_autolinked_build/cmake_install.cmake")
   include("/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/rnscreens_autolinked_build/cmake_install.cmake")
   include("/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/rnsvg_autolinked_build/cmake_install.cmake")
+  include("/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/RNCWebViewSpec_autolinked_build/cmake_install.cmake")
 
 endif()
 
