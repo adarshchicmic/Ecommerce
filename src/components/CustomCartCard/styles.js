@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   cardContainerStyle: {
     margin: 10,
     backgroundColor: '#fff',
-    // display: 'flex',
+    display: 'flex',
     width: wp(90),
     paddingTop: 12,
     paddingBottom: 12,
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
     shadowColor: '#00000',
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
+    borderRadius: 50,
   },
-
   cardImageStyle: {
     alignSelf: 'center',
     width: wp(40),
@@ -41,18 +41,19 @@ const styles = StyleSheet.create({
   },
   addToCartBtnStyle: {
     display: 'flex',
-    alignItems: 'center',
+    alignSelf: 'center',
     justifyContent: 'center',
-    borderRadius: 6,
+    width: wp(50),
+    height: hp(5),
+    borderRadius: 16,
+    backgroundColor: '#f4c430',
   },
   addToCartBtntextStyle: {
-    backgroundColor: '#f4c430',
+    fontSize: RFValue(14),
+    fontWeight: '600',
     color: '#fff',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingBottom: 10,
-    paddingTop: 10,
-    marginTop: 10,
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 });
 

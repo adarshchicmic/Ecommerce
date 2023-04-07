@@ -121,6 +121,13 @@ export const api = createApi({
         body: { product_id },
       }),
     }),
+    createIntent: builder.mutation({
+      query: ({ amount }) => ({
+        url: 'intent/',
+        method: 'POST',
+        body: { amount },
+      }),
+    }),
     createCheckOut: builder.mutation({
       query: ({ product_id, quantity, address }) => ({
         url: 'create_checkout/',
@@ -148,4 +155,5 @@ export const {
   useRecentlyViewedItemsMutation,
   useRemoveFromCartMutation,
   useCreateCheckOutMutation,
+  useCreateIntentMutation,
 } = api;

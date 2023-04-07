@@ -58,9 +58,16 @@ export const COMMON_CONSTS = {
   ADDRESS_REGEX: /^\d+\s[A-z]+\s[A-z]+/,
   ADDRESS_MUST_CONTAIN:
     'Address must contain atleast 1 digit and 2 words eg. 123 Main St',
+  OUT_OF_STOCK: 'Out of Stock',
 };
 
 export const BASE_URL = 'https://cb43-122-160-165-213.in.ngrok.io/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';
+
+// export const PUBLISHABLE_KEY =
+//   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';
+
+export const PUBLISHABLE_KEY =
+  'pk_test_51MqbnxSAzF6lK80w8LFUaRTheIJFb7tfojDLr3G6yjM0K6ghBcYmKe9ssj3TKzmf9TV2QrnnoZnB0pbgKz0SRoUO00sIML0e7z';

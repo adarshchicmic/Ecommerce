@@ -50,7 +50,10 @@ const Cart = ({ navigation }) => {
     });
   };
   const handleCheckoutPress = () => {
-    navigation.navigate('OrderSummaryPage', { productId: 1 });
+    navigation.navigate('OrderSummaryPage', {
+      productId: 1,
+      totalPrice: totalPrice,
+    });
   };
   const handleRenderItems = items => {
     return (

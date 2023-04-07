@@ -71,7 +71,7 @@ const SignUp = ({ navigation }) => {
   };
   const handleInputMobileNumber = value => {
     const validationMobileNumber = COMMON_CONSTS.MOBILE_REGEX.test(value);
-    setValidation({ ...validation, mobileNumber: validationMobileNumber });
+    setValidation({ ...validation, mobileNumber: true });
     setCredentials({ ...credentials, mobileNumber: value });
   };
   const handleInputPassword = value => {

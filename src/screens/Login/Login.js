@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
   const [allFilled, setAllFilled] = useState(true);
   const [signIn, signInResult] = useSignInMutation();
   const [getName, getNameResult] = useGetNameMutation();
-
+  console.log(signInResult, 'Ye sign in ka result hai kfdsnkjkdf');
   useEffect(() => {
     if (signInResult.isLoading === true) {
       setIsLoading(true);
@@ -80,7 +80,7 @@ const Login = ({ navigation }) => {
     const validationMobileNumber = COMMON_CONSTS.MOBILE_REGEX.test(value);
     setValidation({
       ...validation,
-      mobileNumber: validationMobileNumber,
+      mobileNumber: true,
     });
   };
   const handleInputPassword = value => {

@@ -1,4 +1,12 @@
-import { SafeAreaView, Text, View, ActivityIndicator } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  ActivityIndicator,
+  Button,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import CustomTextInput from '../../../components/CustomTextInput/CustomTextInput';
 import CustomButton from '../../../components/CustomButton/CustomButton';
@@ -9,6 +17,15 @@ import {
   useCreateCheckOutMutation,
   useGetProductQuery,
 } from '../../../services/api';
+
+import {
+  CardField,
+  CardFieldInput,
+  useStripe,
+} from '@stripe/stripe-react-native';
+import { useCreateIntentMutation } from '../../../services/api';
+import Payment from '../Payment/Payment';
+
 const OrderSummary = ({ navigation, route }) => {
   const { product_id } = route.params;
   const { quantity } = route.params;
@@ -20,7 +37,34 @@ const OrderSummary = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [link, setLink] = useState('');
   const [sessionId, setSessionId] = useState('');
+  const [card, setCard] = useState(CardFieldInput.Details);
+  const { confirmPayment, handleCardAction } = useStripe();
+  const [paymentIntent, setPaymentIntent] = useState('');
+  //   const API_URL = 'http://localhost:8000';
+  const { initPaymentSheet, presentPaymentSheet } = useStripe();
+  const [loading, setLoading] = useState(false);
+  const [intentFunction, intentResult] = useCreateIntentMutation();
+
   console.log(createCheckoutResult);
+  useEffect(() => {
+    intentFunction({ amount: 100 });
+    initializePaymentSheet();
+  }, []);
+  useEffect(() => {
+    if (intentResult.isLoading === true) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+    if (intentResult.isLoading === false && intentResult.isSuccess === true) {
+      console.log(intentResult?.data?.paymentIntent, 'ye inttent result hai ');
+      console.log(intentResult?.data, 'ye inttent result hai nahi  ');
+      setPaymentIntent(intentResult?.data?.paymentIntent);
+    }
+  }, [intentResult]);
+  useEffect(() => {
+    initializePaymentSheet();
+  }, [paymentIntent]);
   useEffect(() => {
     if (createCheckoutResult.isLoading === true) {
       setIsLoading(true);
@@ -54,7 +98,8 @@ const OrderSummary = ({ navigation, route }) => {
   };
   const handleContinueButtonClick = () => {
     console.log('Button clicked ');
-    navigation.navigate('PaymentScreen');
+    navigation.navigate('Payment');
+    // navigation.navigate('PaymentScreen');
   };
   const handleCheckBox = () => {
     setCheckBoxCashOnDelivery(!checkBoxCashOnDelivery);
@@ -62,11 +107,34 @@ const OrderSummary = ({ navigation, route }) => {
   const handlePayWithStripe = () => {
     console.log('pay with stripe called');
     if (validAddress && !checkBoxCashOnDelivery) {
-      createCheckout({
-        product_id: product_id,
-        quantity: quantity,
-        address: address,
-      });
+      // createCheckout({
+      //   product_id: product_id,
+      //   quantity: quantity,
+      //   address: address,
+      // });
+      openPaymentSheet();
+    }
+  };
+  const initializePaymentSheet = async () => {
+    // const { paymentIntent, ephemeralKey, customer } =
+    //   await fetchPaymentSheetParams();
+    console.log(paymentIntent, 'this is current payment intent ');
+    const { error } = await initPaymentSheet({
+      //   customerId: customer,
+      //   customerEphemeralKeySecret: ephemeralKey,
+
+      paymentIntentClientSecret: paymentIntent,
+    });
+    if (!error) {
+      setLoading(true);
+    }
+  };
+  const openPaymentSheet = async () => {
+    const { error } = await presentPaymentSheet();
+    if (error) {
+      Alert.alert(`Error code: ${error.code}`, error.message);
+    } else {
+      Alert.alert('Success', 'Your order is confirmed!');
     }
   };
   return (
@@ -100,6 +168,7 @@ const OrderSummary = ({ navigation, route }) => {
               {COMMON_CONSTS.CASH_ON_DELIVERY}
             </Text>
           </View>
+          <Payment />
           <CustomButton
             styleBtn={styles.payWithStripeFullButton}
             styleTxt={styles.payWithStripeTextStyle}

@@ -25,6 +25,14 @@ const ProductDetail = ({ navigation, route }) => {
   const [addToCart, addToCartResult] = useAddToCartMutation();
   console.log(addToCartResult, 'ye add to cart result hai');
   console.log(product);
+  const [outOfStock, setOutOfStock] = useState(false);
+  useEffect(() => {
+    if (quantity === 0) {
+      setOutOfStock(true);
+    } else {
+      setOutOfStock(false);
+    }
+  }, [quantity]);
   const dispatch = useDispatch();
   useEffect(() => {
     if (product.isLoading === false && product.isSuccess === true) {
@@ -41,7 +49,9 @@ const ProductDetail = ({ navigation, route }) => {
   };
 
   const handleAddToCartButton = () => {
-    addToCart({ product_id: productDetail.id, quantity: quantity });
+    if (quantity !== 0) {
+      addToCart({ product_id: productDetail.id, quantity: quantity });
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -59,9 +69,13 @@ const ProductDetail = ({ navigation, route }) => {
             <Text style={styles.hurryUpStyle}>
               {COMMON_CONSTS.HURRY_UP} {'\n'}
               {COMMON_CONSTS.ITEMS_LEFT} <Text>{'  '} </Text>
-              <Text style={styles.itemLeftStyle}>
-                {productDetail.quantity} {COMMON_CONSTS.ONLY}
-              </Text>
+              {outOfStock ? (
+                <Text>{COMMON_CONSTS.OUT_OF_STOCK}</Text>
+              ) : (
+                <Text style={styles.itemLeftStyle}>
+                  {productDetail.quantity} {COMMON_CONSTS.ONLY}
+                </Text>
+              )}
             </Text>
             <Text style={styles.productDetailTitleStyle}>
               {COMMON_CONSTS.PRODUCT_DETAIL}

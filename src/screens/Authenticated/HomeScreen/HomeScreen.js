@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image } from 'react-native';
+import { View, Text, FlatList, Image, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useGetAllProductsQuery } from '../../../services/api';
 import CustomCard from '../../../components/CustomCard/CustomCard';
@@ -27,6 +27,8 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     if (addToCartResult.isLoading === false && addToCartResult === true) {
       console.log(addToCartResult, ' ye add to cart ka result hai ');
+      Alert.alert('Item added to cart');
+      alert('jkkdsfk');
     }
   }, [addToCartResult]);
   console.log(data.name);
