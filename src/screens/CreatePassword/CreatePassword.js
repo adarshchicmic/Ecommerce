@@ -46,6 +46,9 @@ const CreatePassword = ({ navigation, route }) => {
         navigation.navigate('Login');
       }
     }
+    if (forgotPasswordResult.isError) {
+      alert('error');
+    }
   }, [forgotPasswordResult]);
   const handleButtonPress = () => {
     // navigation.navigate('FirstScreen');

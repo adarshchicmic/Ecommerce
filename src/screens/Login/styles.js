@@ -28,17 +28,19 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }),
   buttonStyle: {
-    height: hp('5%'),
+    // height: hp('5%'),
     width: wp('90%'),
     borderWidth: 2,
     borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     borderRadius: 6,
+    paddingVertical: 5,
   },
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(15),
+    fontSize: RFValue(14),
+    fontWeight: '500',
   },
   starStyle: {
     color: '#ff0000',

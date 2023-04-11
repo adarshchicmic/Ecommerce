@@ -14,15 +14,16 @@ const styles = StyleSheet.create({
   buttonStyle: {
     height: hp('5%'),
     width: wp('90%'),
-    borderWidth: 2,
-    borderColor: 'black',
+    borderRadius: 30,
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     marginTop: hp(2),
+    marginBottom: hp(3),
   },
   buttonTextStyle: {
     alignSelf: 'center',
     fontSize: RFValue(15),
+    color: '#ffffff',
   },
   totalAmountStyle: {
     marginTop: hp(5),

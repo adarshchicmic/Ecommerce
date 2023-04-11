@@ -1,22 +1,37 @@
 import { SafeAreaView, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useGetRecentlyViewedQuery } from '../../../services/api';
+import {
+  useGetRecentlyViewedQuery,
+  useLazyGetRecentlyViewedItemsQuery,
+} from '../../../services/api';
 import { FlatList } from 'react-native-gesture-handler';
 import CustomCartCard from '../../../components/CustomCartCard/CustomCartCard';
 const RecentlyViewed = ({ navigation }) => {
-  const data = useGetRecentlyViewedQuery();
-  console.log(data, 'ye data hai fjkadhsklfhdasjkhfakjs');
   const [length, setLength] = useState(0);
   const [recentItem, setRecentItem] = useState([]);
+  const [page, setPage] = useState(0);
+  const [getRecent, { data, isSuccess, isLoading }] =
+    useLazyGetRecentlyViewedItemsQuery();
+  const dataa = useGetRecentlyViewedQuery(page);
+  console.log(dataa, 'ye data hai fjkadhsklfhdasjkhfakjs');
   useEffect(() => {
-    if (data.isLoading === false && data.isSuccess === true) {
-      console.log(data.data.data, 'ye data hai consol');
-      setRecentItem(data?.data?.data);
-      setLength(data?.data?.data?.length);
+    if (dataa.isLoading === false && dataa.isSuccess === true) {
+      console.log(dataa.data.data, 'ye data hai consol');
+      setRecentItem(dataa?.data?.data);
+      setLength(dataa?.data?.data?.length);
     }
-  }, [data]);
+  }, [dataa]);
+  useEffect(() => {
+    getRecent(page);
+    if (isSuccess === true && isLoading === false) {
+      setRecentItem([...recentItem, ...data]);
+    }
+  }, [page]);
   const handleWholeButtonPress = value => {
     navigation.navigate('ProductDetail', { productId: value });
+  };
+  const addPage = () => {
+    setPage(page + 1);
   };
   const handleRenderItem = items => {
     // return console.log(items.product_id, 'ye product id hai ');
@@ -32,11 +47,11 @@ const RecentlyViewed = ({ navigation }) => {
   };
   return (
     <SafeAreaView>
-      <Text>RecentlyViewed</Text>
-
       <FlatList
         data={recentItem}
         renderItem={item => handleRenderItem(item.item)}
+        onEndReachedThreshold={0.7}
+        onEndReached={addPage}
       />
     </SafeAreaView>
   );

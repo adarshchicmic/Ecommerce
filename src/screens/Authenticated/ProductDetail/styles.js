@@ -19,28 +19,33 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     width: wp(100),
-    height: hp(60),
+    height: hp(40),
     resizeMode: 'contain',
     marginRight: wp(10),
+    marginBottom: hp(10),
   },
   namePriceStyle: {
-    width: wp(90),
+    width: wp(85),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'center',
     marginBottom: 10,
   },
   titleStyle: {
-    fontSize: RFValue(30),
-    fontWeight: '600',
+    width: wp(55),
+    fontSize: RFValue(20),
+    fontWeight: '400',
+    alignSelf: 'center',
   },
   priceStyle: {
+    alignSelf: 'center',
+    width: wp(40),
     fontSize: RFValue(20),
-    fontWeight: '600',
+    fontWeight: '500',
   },
   hurryUpStyle: {
     fontSize: RFValue(15),
-    fontWeight: 600,
+    fontWeight: 500,
     marginBottom: 10,
   },
   itemLeftStyle: {
@@ -51,8 +56,6 @@ const styles = StyleSheet.create({
   buttonStyle: {
     height: hp('5%'),
     width: wp('50%'),
-    borderWidth: 2,
-    borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     borderRadius: 20,
@@ -66,12 +69,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   productDetailTitleStyle: {
-    fontSize: RFValue(20),
+    fontSize: RFValue(15),
     fontWeight: '600',
     marginTop: 10,
   },
   detailStyle: {
-    fontSize: RFValue(15),
+    fontSize: RFValue(12),
   },
   quantityStyle: {
     flexDirection: 'row',
@@ -81,6 +84,18 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15),
     fontWeight: '600',
     marginLeft: 5,
+  },
+  reviewStyle: {
+    height: hp(10),
+    width: wp(85),
+    borderWidth: 2,
+  },
+  reviewContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  containerScrollView: {
+    justifyContent: 'center',
   },
 });
 

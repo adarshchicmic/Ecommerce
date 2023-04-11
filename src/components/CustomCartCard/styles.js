@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   titleStyle: {
-    fontSize: RFValue(15),
-    fontWeight: '500',
+    fontSize: RFValue(14),
+    fontWeight: '400',
   },
   priceStyle: {
-    fontSize: RFValue(20),
+    fontSize: RFValue(14),
     fontWeight: '400',
   },
   quantityStyle: {
-    fontSize: RFValue(20),
+    fontSize: RFValue(10),
     fontWeight: '400',
   },
   addToCartBtnStyle: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4c430',
   },
   addToCartBtntextStyle: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(10),
     fontWeight: '600',
     color: '#fff',
     justifyContent: 'center',

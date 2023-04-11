@@ -55,6 +55,9 @@ const Login = ({ navigation }) => {
         console.log(credentials.token, 'ye token hai ');
       }
     }
+    if (signInResult.isError) {
+      alert('error');
+    }
   }, [signInResult]);
   // useEffect(() => {}, [getNameResult]);
   const handlesignInButton = () => {
@@ -80,7 +83,7 @@ const Login = ({ navigation }) => {
     const validationMobileNumber = COMMON_CONSTS.MOBILE_REGEX.test(value);
     setValidation({
       ...validation,
-      mobileNumber: true,
+      mobileNumber: validationMobileNumber,
     });
   };
   const handleInputPassword = value => {

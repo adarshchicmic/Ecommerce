@@ -21,7 +21,8 @@ const Cart = ({ navigation }) => {
   const [cartItemsDetail, setCartItemsDetail] = useState([]);
   const [totalPrice, setTotalPrice] = useState('');
   const [isLoadingg, setIsLoading] = useState(false);
-
+  const [goCheckOut, setGoCheckOut] = useState(false);
+  const [removeFromCartLoading, setRemoveFromCartLoading] = useState(false);
   useEffect(() => {
     if (isLoading === true) {
       setIsLoading(true);
@@ -33,12 +34,28 @@ const Cart = ({ navigation }) => {
       console.log(data, 'ye cart item from lazy query hai ');
       setCartItemsDetail(data?.data);
       setTotalPrice(data?.Total_price?.product_price__sum);
+      setGoCheckOut(data?.data?.length);
     }
     if (isLoading === false && isSuccess === true) {
       setCartItemsDetail(data?.data);
       setTotalPrice(data?.Total_price?.product_price__sum);
+      setGoCheckOut(data?.data?.length);
+      console.log(data.data.length, 'ye product count hai ');
     }
-  }, [isFocused, data]);
+  }, [isFocused, data, removeFromCartResult]);
+  useEffect(() => {
+    if (removeFromCart.isLoading) {
+      setRemoveFromCartLoading(true);
+    } else {
+      setRemoveFromCartLoading(false);
+    }
+    if (
+      removeFromCartResult.isLoading === false &&
+      removeFromCartResult.isSuccess === true
+    ) {
+      alert('Product removed from cart successfully');
+    }
+  }, [removeFromCartResult]);
   const handleRemoveFromCart = productId => {
     console.log(productId, 'id hai ye product waali  ');
     removeFromCart({ id: productId });
@@ -50,10 +67,14 @@ const Cart = ({ navigation }) => {
     });
   };
   const handleCheckoutPress = () => {
-    navigation.navigate('OrderSummaryPage', {
-      productId: 1,
-      totalPrice: totalPrice,
-    });
+    if (goCheckOut) {
+      navigation.navigate('OrderSummaryPage', {
+        productId: 1,
+        totalPrice: totalPrice,
+      });
+    } else {
+      alert('there is no products in the cart ');
+    }
   };
   const handleRenderItems = items => {
     return (
@@ -69,7 +90,7 @@ const Cart = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      {isLoadingg ? (
+      {isLoadingg || removeFromCartLoading ? (
         <View>
           <ActivityIndicator />
         </View>

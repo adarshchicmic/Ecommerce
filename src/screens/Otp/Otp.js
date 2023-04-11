@@ -36,6 +36,9 @@ const ForgotPassword = ({ navigation, route }) => {
         navigation.navigate('CreateNewPassword', { number: number });
       }
     }
+    if (verifyOtpResult.isError) {
+      alert('error');
+    }
   }, [verifyOtpResult]);
   const handleButtonPress = () => {
     verifyOtp({ otp: otp, phone_number: number });

@@ -41,14 +41,17 @@ export const api = createApi({
     getAllProducts: builder.query({
       query: () => 'getproduct/',
     }),
+    getReview: builder.query({
+      query: ({ product_id }) => `productreview/?product_id=${product_id}/`,
+    }),
     getProduct: builder.query({
       query: products => `getproduct/${products}`,
     }),
     getCart: builder.query({
-      query: () => 'cart/',
+      query: () => 'cart/?page=1',
     }),
     getCartItems: builder.query({
-      query: () => 'cart/',
+      query: () => 'cart/?page=1',
     }),
     getName: builder.mutation({
       query: ({ phone_number }) => ({
@@ -57,8 +60,12 @@ export const api = createApi({
         body: { phone_number },
       }),
     }),
+
     getRecentlyViewed: builder.query({
-      query: () => 'recentlyviewed/',
+      query: page => `recentlyviewed/?page=${page}`,
+    }),
+    getRecentlyViewedItems: builder.query({
+      query: page => `recentyviewed/?page=${page}`,
     }),
     signUp: builder.mutation({
       query: ({ phone_number, name, password, detail }) => ({
@@ -128,6 +135,13 @@ export const api = createApi({
         body: { amount },
       }),
     }),
+    productReview: builder.mutation({
+      query: ({ product_id, review, rating }) => ({
+        url: 'productreview/',
+        method: 'POST',
+        body: { product_id, review, rating },
+      }),
+    }),
     createCheckOut: builder.mutation({
       query: ({ product_id, quantity, address }) => ({
         url: 'create_checkout/',
@@ -156,4 +170,7 @@ export const {
   useRemoveFromCartMutation,
   useCreateCheckOutMutation,
   useCreateIntentMutation,
+  useProductReviewMutation,
+  useLazyGetRecentlyViewedItemsQuery,
+  useGetReviewQuery,
 } = api;

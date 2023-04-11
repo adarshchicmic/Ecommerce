@@ -14,16 +14,16 @@ const styles = StyleSheet.create({
   buttonStyle: val => ({
     height: hp('5%'),
     width: wp('90%'),
-    borderWidth: 2,
-    borderColor: 'black',
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     marginTop: val === false ? hp(2) : hp(2),
-    borderRadius: 6,
+    borderRadius: 30,
   }),
   buttonTextStyle: {
     alignSelf: 'center',
     fontSize: RFValue(15),
+    color: '#ffffff',
+    fontWeight: '500',
   },
   headerTextStyle: {
     alignSelf: 'center',

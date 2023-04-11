@@ -43,6 +43,9 @@ const SignUp = ({ navigation }) => {
       }
       console.log(signUpResult, 'useEffect walla hai ye');
     }
+    if (signUpResult.isError) {
+      alert('error');
+    }
   }, [signUpResult]);
 
   const handleSubmit = () => {
@@ -71,7 +74,7 @@ const SignUp = ({ navigation }) => {
   };
   const handleInputMobileNumber = value => {
     const validationMobileNumber = COMMON_CONSTS.MOBILE_REGEX.test(value);
-    setValidation({ ...validation, mobileNumber: true });
+    setValidation({ ...validation, mobileNumber: validationMobileNumber });
     setCredentials({ ...credentials, mobileNumber: value });
   };
   const handleInputPassword = value => {

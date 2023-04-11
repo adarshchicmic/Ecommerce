@@ -41,6 +41,9 @@ const ForgotPassword = ({ navigation }) => {
         number: credentials.mobileNumber,
       });
     }
+    if (resendOtpResult.isError) {
+      alert('error');
+    }
   }, [resendOtpResult]);
 
   const handleButtonPress = () => {

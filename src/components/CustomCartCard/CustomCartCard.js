@@ -31,11 +31,15 @@ const CustomCartCard = ({
           source={{ uri: `${BASE_URL}${productDetail.photo}` }}
         />
         <Text style={styles.titleStyle}> {productDetail.name}</Text>
-        <Text style={styles.priceStyle}>₹ {price}</Text>
-        <Text>
-          {COMMON_CONSTS.QUANTITY}
-          {quantity}
-        </Text>
+        {show ? (
+          <View>
+            <Text style={styles.priceStyle}>₹ {price}</Text>
+            <Text>
+              {COMMON_CONSTS.QUANTITY}
+              {quantity}
+            </Text>
+          </View>
+        ) : null}
         {show && (
           <TouchableOpacity
             style={styles.addToCartBtnStyle}
