@@ -10,6 +10,8 @@ import { useRemoveFromCartMutation } from '../../../services/api';
 import CustomButton from '../../../components/CustomButton/CustomButton';
 import styles from './styles';
 import { COMMON_CONSTS } from '../../../shared/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeTotalPrice } from '../../../store /feature/ProductSlice';
 const Cart = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [getCart, { data, isSuccess, isLoading }] = useLazyGetCartQuery();
@@ -23,6 +25,7 @@ const Cart = ({ navigation }) => {
   const [isLoadingg, setIsLoading] = useState(false);
   const [goCheckOut, setGoCheckOut] = useState(false);
   const [removeFromCartLoading, setRemoveFromCartLoading] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (isLoading === true) {
       setIsLoading(true);
@@ -34,6 +37,9 @@ const Cart = ({ navigation }) => {
       console.log(data, 'ye cart item from lazy query hai ');
       setCartItemsDetail(data?.data);
       setTotalPrice(data?.Total_price?.product_price__sum);
+      dispatch(
+        changeTotalPrice({ totalPrice: data?.Total_price?.product_price__sum }),
+      );
       setGoCheckOut(data?.data?.length);
     }
     if (isLoading === false && isSuccess === true) {

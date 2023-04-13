@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View, Alert, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
-import {
-  CardField,
-  CardFieldInput,
-  useStripe,
-} from '@stripe/stripe-react-native';
+import { CardFieldInput, useStripe } from '@stripe/stripe-react-native';
 import { useCreateIntentMutation } from '../../../services/api';
 import { COMMON_CONSTS } from '../../../shared/constants';
-
+import { useSelector } from 'react-redux';
 const CheckoutScreen = () => {
-  const [card, setCard] = useState(CardFieldInput.Details);
-  const { confirmPayment, handleCardAction } = useStripe();
   const [paymentIntent, setPaymentIntent] = useState('');
-  //   const API_URL = 'http://localhost:8000';
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [loading, setLoading] = useState(false);
   const [intentFunction, intentResult] = useCreateIntentMutation();
+  const states = useSelector(state => state);
+  console.log(
+    states.productSlice.totalPrice,
+    'states find karo khdsafjklhlakjfhhfjk',
+  );
   useEffect(() => {
-    intentFunction({ amount: 100 });
+    intentFunction({ amount: states?.productSlice?.totalPrice * 100 });
     initializePaymentSheet();
   }, []);
   useEffect(() => {
@@ -58,6 +56,7 @@ const CheckoutScreen = () => {
     const { error } = await initPaymentSheet({
       //   customerId: customer,
       //   customerEphemeralKeySecret: ephemeralKey,
+      merchantDisplayName: COMMON_CONSTS.USER_NAME,
 
       paymentIntentClientSecret: paymentIntent,
     });
@@ -80,14 +79,14 @@ const CheckoutScreen = () => {
           {COMMON_CONSTS.PAY_WITH_STRIPE}
         </Text>
       </TouchableOpacity>
-      <Button
+      {/* <Button
         style={styles.button}
         disabled={!loading}
         title="Checkout"
         color="#841584"
         onPress={openPaymentSheet}
       />
-      <Button title="jadsfkjldsfa" onPress={openPaymentSheet} />
+      <Button title="jadsfkjldsfa" onPress={openPaymentSheet} /> */}
     </View>
   );
 };

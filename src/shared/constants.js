@@ -62,9 +62,10 @@ export const COMMON_CONSTS = {
   REVIEW: 'Review',
   ADD_REVIEW: 'Add Review',
   PLEASE_ADD_REVIEW: 'Please Add Review InputBox to add your review',
+  USER_NAME: 'Adarsh',
 };
 
-export const BASE_URL = 'https://0960-122-160-165-213.ngrok-free.app/';
+export const BASE_URL = 'https://0a75-122-160-165-213.ngrok-free.app/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';
