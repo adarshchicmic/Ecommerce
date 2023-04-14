@@ -12,24 +12,29 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonStyle: val => ({
-    height: hp('5%'),
-    width: wp('90%'),
+    height: hp('10%'),
+    width: wp('40%'),
     justifyContent: 'center',
-    backgroundColor: '#f4c430',
-    marginTop: val === false ? hp(2) : hp(2),
+    backgroundColor: '#dcdfe3',
+    marginTop: val === false ? hp(4) : hp(4),
     borderRadius: 30,
+    marginHorizontal: wp(3),
   }),
   buttonTextStyle: {
     alignSelf: 'center',
-    fontSize: RFValue(15),
-    color: '#ffffff',
-    fontWeight: '500',
+    fontSize: RFValue(12),
+    color: '#000000',
+    fontWeight: '600',
+    textAlign: 'center',
   },
   headerTextStyle: {
-    alignSelf: 'center',
-    fontSize: RFValue(14),
+    fontSize: RFValue(24),
     fontWeight: '600',
     marginBottom: hp(5),
+    marginLeft: wp(4),
+  },
+  twoButtonStyle: {
+    flexDirection: 'row',
   },
 });
 

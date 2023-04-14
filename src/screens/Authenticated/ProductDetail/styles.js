@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
+import { createEntityAdapter } from '@reduxjs/toolkit';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,18 +12,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   afterImage: {
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignSelf: 'center',
   },
   afterPriceStyle: {
     width: wp(80),
   },
   imageStyle: {
-    width: wp(100),
+    width: wp(90),
     height: hp(40),
     resizeMode: 'contain',
-    marginRight: wp(10),
     marginBottom: hp(10),
+    alignSelf: 'center',
   },
   namePriceStyle: {
     width: wp(85),
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     height: hp('5%'),
-    width: wp('50%'),
+    width: wp('40%'),
     justifyContent: 'center',
     backgroundColor: '#f4c430',
     borderRadius: 20,
@@ -66,7 +67,8 @@ const styles = StyleSheet.create({
   },
   twoButtonStyle: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
+    width: wp(100),
   },
   productDetailTitleStyle: {
     fontSize: RFValue(15),

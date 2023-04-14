@@ -38,8 +38,18 @@ export const api = createApi({
     //     },
     //   }),
     // }),
+    transactionHistory: builder.query({
+      query: page => `transactionhistory/?page=${page}`,
+    }),
+    orderHistory: builder.query({
+      query: page => `orderhistory/?page=${page}`,
+    }),
+
     getAllProducts: builder.query({
       query: () => 'getproduct/',
+    }),
+    getSuccess: builder.query({
+      query: () => 'intent_success/',
     }),
     getReview: builder.query({
       query: ({ product_id }) => `productreview/?product_id=${product_id}/`,
@@ -173,4 +183,7 @@ export const {
   useProductReviewMutation,
   useLazyGetRecentlyViewedItemsQuery,
   useGetReviewQuery,
+  useLazyGetSuccessQuery,
+  useTransactionHistoryQuery,
+  useOrderHistoryQuery,
 } = api;

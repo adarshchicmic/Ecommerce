@@ -108,6 +108,8 @@ const Cart = ({ navigation }) => {
             <View>
               <Text style={styles.totalAmountStyle}>
                 {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
+                {COMMON_CONSTS.RS}
+                {'    '}
                 {totalPrice}
               </Text>
               <CustomButton

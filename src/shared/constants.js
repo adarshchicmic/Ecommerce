@@ -44,10 +44,10 @@ export const COMMON_CONSTS = {
   MINUS: '-',
   QUANTITY: 'Quantity: ',
   REMOVE_FROM_CART: 'Remove from cart',
-  RECENTLY_VIEWED_ITEMS: 'Recently Viewed Items',
+  RECENTLY_VIEWED_ITEMS: 'Recently\nViewed Items',
   TOTAL_ITEMS: 'Total Items: ',
-  ORDER_HISTORY: 'Order History',
-  TRANSACTION_HISTORY: 'Transaction History',
+  ORDER_HISTORY: 'Order\nHistory',
+  TRANSACTION_HISTORY: 'Transaction\n History',
   HELLO: 'Hello!',
   ADDRESS: 'Address',
   ORDER_SUMMARY: 'Order Summary',
@@ -63,9 +63,10 @@ export const COMMON_CONSTS = {
   ADD_REVIEW: 'Add Review',
   PLEASE_ADD_REVIEW: 'Please Add Review InputBox to add your review',
   USER_NAME: 'Adarsh',
+  RS: '₹.',
 };
 
-export const BASE_URL = 'https://0a75-122-160-165-213.ngrok-free.app/';
+export const BASE_URL = 'https://7980-122-160-165-213.ngrok-free.app/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';

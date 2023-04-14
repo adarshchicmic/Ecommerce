@@ -15,7 +15,7 @@ import {
   useCreateCheckOutMutation,
   useGetProductQuery,
 } from '../../../services/api';
-
+import StatusBarr from '../../../components/StatusBar/StatusBar';
 import {
   CardField,
   CardFieldInput,
@@ -23,7 +23,7 @@ import {
 } from '@stripe/stripe-react-native';
 import { useCreateIntentMutation } from '../../../services/api';
 import Payment from '../Payment/Payment';
-
+import CustomGoBackComponent from '../../../components/CustomGoBack/CustomGoBackComponent';
 const OrderSummary = ({ navigation, route }) => {
   const { product_id } = route.params;
   const { quantity } = route.params;
@@ -93,8 +93,13 @@ const OrderSummary = ({ navigation, route }) => {
   const handleCheckBox = () => {
     setCheckBoxCashOnDelivery(!checkBoxCashOnDelivery);
   };
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <StatusBarr backgroundColor={'#9ad3db'} />
+      <CustomGoBackComponent onPress={handleGoBack} />
       {isLoading ? (
         <View>
           <ActivityIndicator />
@@ -133,7 +138,7 @@ const OrderSummary = ({ navigation, route }) => {
           />
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

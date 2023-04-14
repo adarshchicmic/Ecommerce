@@ -15,6 +15,9 @@ import PaymentScreen from '../screens/Authenticated/PaymentScreen/PaymentScreen'
 import { useSelector } from 'react-redux';
 import OrderSummary from '../screens/Authenticated/OrderSummaryPage/OrderSummary';
 import Payment from '../screens/Authenticated/Payment/Payment';
+import TransactionHistory from '../screens/Authenticated/TransactionHistory/TransactionHistory';
+import OrderHistory from '../screens/Authenticated/OrderHistory/OrderHistory';
+import ToDelete from '../components/ToDelete/ToDelete';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +45,12 @@ const ApplicationNavigator = () => {
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
             <Stack.Screen name="OrderSummaryPage" component={OrderSummary} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen
+              name="TransactionHistory"
+              component={TransactionHistory}
+            />
+            <Stack.Screen name="OrderHistory" component={OrderHistory} />
+            <Stack.Screen name="Dummy" component={ToDelete} />
           </>
         )}
       </Stack.Navigator>

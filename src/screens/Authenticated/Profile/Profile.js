@@ -47,6 +47,12 @@ const Profile = ({ navigation }) => {
   const handleRecentViewedButtonPress = () => {
     navigation.navigate('RecentView');
   };
+  const handleOrderHistory = () => {
+    navigation.navigate('OrderHistory');
+  };
+  const handleTransactionHistory = () => {
+    navigation.navigate('TransactionHistory');
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.headerTextStyle}>
@@ -54,30 +60,34 @@ const Profile = ({ navigation }) => {
         {'   '}
         {name}
       </Text>
-      <CustomButton
-        btnText={COMMON_CONSTS.ORDER_HISTORY}
-        styleBtn={styles.buttonStyle(false)}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={handleLogoutButtonPress}
-      />
-      <CustomButton
-        btnText={COMMON_CONSTS.TRANSACTION_HISTORY}
-        styleBtn={styles.buttonStyle(false)}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={handleLogoutButtonPress}
-      />
-      <CustomButton
-        btnText={COMMON_CONSTS.RECENTLY_VIEWED_ITEMS}
-        styleBtn={styles.buttonStyle(false)}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={handleRecentViewedButtonPress}
-      />
-      <CustomButton
-        btnText={COMMON_CONSTS.LOGOUT}
-        styleBtn={styles.buttonStyle(true)}
-        styleTxt={styles.buttonTextStyle}
-        onPressFunction={handleLogoutButtonPress}
-      />
+      <View style={styles.twoButtonStyle}>
+        <CustomButton
+          btnText={COMMON_CONSTS.ORDER_HISTORY}
+          styleBtn={styles.buttonStyle(false)}
+          styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleOrderHistory}
+        />
+        <CustomButton
+          btnText={COMMON_CONSTS.TRANSACTION_HISTORY}
+          styleBtn={styles.buttonStyle(false)}
+          styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleTransactionHistory}
+        />
+      </View>
+      <View style={styles.twoButtonStyle}>
+        <CustomButton
+          btnText={COMMON_CONSTS.RECENTLY_VIEWED_ITEMS}
+          styleBtn={styles.buttonStyle(false)}
+          styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleRecentViewedButtonPress}
+        />
+        <CustomButton
+          btnText={COMMON_CONSTS.LOGOUT}
+          styleBtn={styles.buttonStyle(true)}
+          styleTxt={styles.buttonTextStyle}
+          onPressFunction={handleLogoutButtonPress}
+        />
+      </View>
     </View>
   );
 };

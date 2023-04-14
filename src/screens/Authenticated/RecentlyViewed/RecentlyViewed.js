@@ -1,4 +1,4 @@
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import {
   useGetRecentlyViewedQuery,
@@ -6,6 +6,9 @@ import {
 } from '../../../services/api';
 import { FlatList } from 'react-native-gesture-handler';
 import CustomCartCard from '../../../components/CustomCartCard/CustomCartCard';
+import StatusBarr from '../../../components/StatusBar/StatusBar';
+import CustomGoBackComponent from '../../../components/CustomGoBack/CustomGoBackComponent';
+import styles from './styles';
 const RecentlyViewed = ({ navigation }) => {
   const [length, setLength] = useState(0);
   const [recentItem, setRecentItem] = useState([]);
@@ -45,15 +48,22 @@ const RecentlyViewed = ({ navigation }) => {
       />
     );
   };
+  const handleButtonGoBack = () => {
+    navigation.goBack();
+  };
   return (
-    <SafeAreaView>
-      <FlatList
-        data={recentItem}
-        renderItem={item => handleRenderItem(item.item)}
-        onEndReachedThreshold={0.7}
-        onEndReached={addPage}
-      />
-    </SafeAreaView>
+    <View>
+      <StatusBarr backgroundColor={'#9ad3db'} />
+      <CustomGoBackComponent onPress={handleButtonGoBack} />
+      <View style={styles.container}>
+        <FlatList
+          data={recentItem}
+          renderItem={item => handleRenderItem(item.item)}
+          onEndReachedThreshold={0.7}
+          onEndReached={addPage}
+        />
+      </View>
+    </View>
   );
 };
 

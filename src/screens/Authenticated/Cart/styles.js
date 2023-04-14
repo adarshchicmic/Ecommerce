@@ -14,21 +14,23 @@ const styles = StyleSheet.create({
   buttonStyle: {
     height: hp('5%'),
     width: wp('90%'),
-    borderRadius: 30,
+    borderRadius: 10,
     justifyContent: 'center',
     backgroundColor: '#f4c430',
-    marginTop: hp(2),
+    marginTop: hp(3),
     marginBottom: hp(3),
+    alignSelf: 'center',
   },
   buttonTextStyle: {
     alignSelf: 'center',
     fontSize: RFValue(15),
-    color: '#ffffff',
+    color: '#000000',
   },
   totalAmountStyle: {
     marginTop: hp(5),
     fontSize: RFValue(14),
     fontWeight: '600',
+    marginLeft: wp(3),
   },
 });
 

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button, View, Alert, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { CardFieldInput, useStripe } from '@stripe/stripe-react-native';
-import { useCreateIntentMutation } from '../../../services/api';
+import {
+  useCreateIntentMutation,
+  useLazyGetSuccessQuery,
+} from '../../../services/api';
 import { COMMON_CONSTS } from '../../../shared/constants';
 import { useSelector } from 'react-redux';
 const CheckoutScreen = () => {
@@ -10,7 +13,13 @@ const CheckoutScreen = () => {
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [loading, setLoading] = useState(false);
   const [intentFunction, intentResult] = useCreateIntentMutation();
+  console.log(intentResult, 'ye intent ka result hai ');
   const states = useSelector(state => state);
+  const [getSuccess, { data, isSuccess, isLoading }] = useLazyGetSuccessQuery();
+  console.log(
+    data,
+    'yeb success ka resyul hai bbjkha hkjhfkhkljdfskljh fdskjhkl dshklj dfs',
+  );
   console.log(
     states.productSlice.totalPrice,
     'states find karo khdsafjklhlakjfhhfjk',
@@ -70,11 +79,12 @@ const CheckoutScreen = () => {
       Alert.alert(`Error code: ${error.code}`, error.message);
     } else {
       Alert.alert('Success', 'Your order is confirmed!');
+      getSuccess();
     }
   };
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyle}>
         <Text style={styles.button} onPress={openPaymentSheet}>
           {COMMON_CONSTS.PAY_WITH_STRIPE}
         </Text>

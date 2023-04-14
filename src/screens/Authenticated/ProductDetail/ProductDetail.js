@@ -19,9 +19,11 @@ import CustomButton from '../../../components/CustomButton/CustomButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAddToCartMutation } from '../../../services/api';
 import CustomTextInput from '../../../components/CustomTextInput/CustomTextInput';
-
+import StatusBarr from '../../../components/StatusBar/StatusBar';
 import RatingComponent from '../../../components/RatingComponent/RatingComponent';
 import CustomShowRating from '../../../components/CustomShowRating/CustomShowRating';
+import CustomGoBackComponent from '../../../components/CustomGoBack/CustomGoBackComponent';
+import CustmBottom from '../../../components/CustomBottom/CustmBottom';
 const ProductDetail = ({ navigation, route }) => {
   const [productDetail, setProductDetail] = useState({});
   const [productReview, setProductReview] = useState('');
@@ -86,10 +88,11 @@ const ProductDetail = ({ navigation, route }) => {
     }
   }, [addToCartResult]);
   const handleBuyNowButtonPress = () => {
-    navigation.navigate('OrderSummaryPage', {
-      id: productId,
-      quantity: quantity,
-    });
+    // navigation.navigate('OrderSummaryPage', {
+    //   id: productId,
+    //   quantity: quantity,
+    // });
+    navigation.navigate('Dummy');
   };
   const handleOnChangeReview = text => {
     console.log(text);
@@ -116,8 +119,13 @@ const ProductDetail = ({ navigation, route }) => {
       });
     }
   };
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <StatusBarr backgroundColor={'#9ad3db'} />
+      <CustomGoBackComponent onPress={handleGoBack} />
       <ScrollView>
         <View style={styles.containerScrollView}>
           <Image
@@ -127,7 +135,9 @@ const ProductDetail = ({ navigation, route }) => {
           <View style={styles.afterImage}>
             <View style={styles.namePriceStyle}>
               <Text style={styles.titleStyle}>{productDetail?.name}</Text>
-              <Text style={styles.priceStyle}>₹. {productDetail?.price}</Text>
+              <Text style={styles.priceStyle}>
+                {COMMON_CONSTS.RS} {productDetail?.price}
+              </Text>
             </View>
             <View style={styles.afterPriceStyle}>
               <Text style={styles.hurryUpStyle}>
@@ -194,7 +204,8 @@ const ProductDetail = ({ navigation, route }) => {
           onPressFunction={handleBuyNowButtonPress}
         />
       </View>
-    </SafeAreaView>
+      <CustmBottom />
+    </View>
   );
 };
 
