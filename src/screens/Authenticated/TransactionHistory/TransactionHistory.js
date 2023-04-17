@@ -7,6 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 const TransactionHistory = ({ navigation }) => {
   const [transactionData, setTransactionData] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [page, setPage] = useState(1);
   const transactionHistory = useTransactionHistoryQuery(1);
   console.log('transaction History hai ye : ', transactionHistory);
   useEffect(() => {
@@ -18,7 +19,10 @@ const TransactionHistory = ({ navigation }) => {
         transactionHistory?.data?.data,
         'ye transaction History hai ',
       );
-      setTransactionData(transactionHistory?.data?.data);
+      setTransactionData([
+        ...transactionData,
+        ...transactionHistory?.data?.data,
+      ]);
       console.log(
         transactionHistory?.data?.data?.length,
         'ye transaction History hai ',
@@ -33,6 +37,9 @@ const TransactionHistory = ({ navigation }) => {
   const handleButtonGoBack = () => {
     navigation.goBack();
   };
+  const endReached = () => {
+    setPage(page + 1);
+  };
   return (
     <View>
       <StatusBarr backgroundColor={'#9ad3db'} />
@@ -44,6 +51,9 @@ const TransactionHistory = ({ navigation }) => {
           renderItem={({ item }) => {
             return <Text>{item}</Text>;
           }}
+          keyExtractor={item => item.id.toString()}
+          onEndReached={endReached}
+          onEndReachedThreshold={0.5}
         />
       ) : (
         <Text>No Transaction found</Text>

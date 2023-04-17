@@ -58,7 +58,7 @@ export const api = createApi({
       query: products => `getproduct/${products}`,
     }),
     getCart: builder.query({
-      query: () => 'cart/?page=1',
+      query: page => `cart/?page=${page}`,
     }),
     getCartItems: builder.query({
       query: () => 'cart/?page=1',

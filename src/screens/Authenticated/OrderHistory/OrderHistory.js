@@ -11,6 +11,7 @@ const OrderHistory = ({ navigation }) => {
   // console.log(data, 'ye val hai that came from useHistory');
   const [orderData, setOrderData] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [page, setPage] = useState(1);
   const data = useOrderHistoryQuery(1);
   console.log(data, 'ye data ahao hai bhia ');
   useEffect(() => {
@@ -19,7 +20,7 @@ const OrderHistory = ({ navigation }) => {
         data?.data?.data,
         'ye data hai bhia jdalkshhl fsdkhkjlhkjfhsd lkks ',
       );
-      setOrderData(data?.data?.data);
+      setOrderData([...orderData, ...data?.data?.data]);
       console.log(
         data?.data?.data?.length,
         'ye data hai bhia jdalkshhl fsdkhkjlhkjfhsd lkks ',
@@ -34,6 +35,9 @@ const OrderHistory = ({ navigation }) => {
   const handleButtonGoBack = () => {
     navigation.goBack();
   };
+  const endReached = () => {
+    setPage(page + 1);
+  };
   return (
     <View>
       <StatusBarr backgroundColor={'#9ad3db'} />
@@ -44,6 +48,9 @@ const OrderHistory = ({ navigation }) => {
           renderItem={({ item }) => {
             return <Text>{item}</Text>;
           }}
+          keyExtractor={item => item.id.toString()}
+          onEndReached={endReached}
+          onEndReachedThreshold={0.5}
         />
       ) : (
         <Text>There is No order</Text>

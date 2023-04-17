@@ -181,12 +181,12 @@ const ProductDetail = ({ navigation, route }) => {
 
       <View style={styles.quantityStyle}>
         <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.QUANTITY}</Text>
-        <TouchableOpacity onPress={() => dispatch(increment())}>
-          <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.PLUS}</Text>
-        </TouchableOpacity>
-        <Text style={styles.quantityTextStyle}>{quantity}</Text>
         <TouchableOpacity onPress={() => dispatch(decrement())}>
           <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.MINUS}</Text>
+        </TouchableOpacity>
+        <Text style={styles.quantityTextStyle}>{quantity}</Text>
+        <TouchableOpacity onPress={() => dispatch(increment())}>
+          <Text style={styles.quantityTextStyle}>{COMMON_CONSTS.PLUS}</Text>
         </TouchableOpacity>
       </View>
 

@@ -15,11 +15,11 @@ import { changeTotalPrice } from '../../../store /feature/ProductSlice';
 const Cart = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [getCart, { data, isSuccess, isLoading }] = useLazyGetCartQuery();
-  let cart;
+
   const [removeFromCart, removeFromCartResult] = useRemoveFromCartMutation();
   console.log(removeFromCartResult, 'Ye remove from cart ka result hai ');
-  let cartItems = useGetCartItemsQuery();
-  console.log(cartItems, 'Ye cart Items hai ');
+  // let cartItems = useGetCartItemsQuery();
+  // console.log(cartItems, 'Ye cart Items hai ');
   const [cartItemsDetail, setCartItemsDetail] = useState([]);
   const [totalPrice, setTotalPrice] = useState('');
   const [isLoadingg, setIsLoading] = useState(false);
@@ -33,9 +33,9 @@ const Cart = ({ navigation }) => {
       setIsLoading(false);
     }
     if (isFocused) {
-      cart = getCart();
+      getCart(1);
       console.log(data, 'ye cart item from lazy query hai ');
-      setCartItemsDetail(data?.data);
+      // setCartItemsDetail(data?.data);
       setTotalPrice(data?.Total_price?.product_price__sum);
       dispatch(
         changeTotalPrice({ totalPrice: data?.Total_price?.product_price__sum }),
