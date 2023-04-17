@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  buttonPrevNext: {
+    backgroundColor: 'red',
+  },
 });
 
 export default styles;

@@ -114,9 +114,11 @@ const Cart = ({ navigation }) => {
                   title={COMMON_CONSTS.PREV}
                   onPress={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage === 1}
+                  color="#9ad3db"
                 />
                 <Button
                   title={COMMON_CONSTS.NEXT}
+                  color="#9ad3db"
                   onPress={() => setCurrentPage(currentPage + 1)}
                   disabled={cartItemsDetail.length < 5}
                 />
