@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     marginBottom: val === COMMON_CONSTS.CREATE_ACCOUNT ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
+  safeAreaStyle: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: hp(13),
+  },
   TextInputStyle: val => ({
     height: hp('5%'),
     width: wp('90%'),
@@ -59,6 +64,7 @@ const styles = StyleSheet.create({
     fontSize: RFValue(10),
   },
   textValidation: {
+    width: wp(90),
     fontSize: RFValue(8),
     color: '#ff0000',
   },

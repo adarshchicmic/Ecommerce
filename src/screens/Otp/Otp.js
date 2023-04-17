@@ -1,4 +1,10 @@
-import { ActivityIndicator, SafeAreaView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  Text,
+  View,
+  ScrollView,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
 import CustomTextInput from '../../components/CustomTextInput/CustomTextInput';
@@ -63,28 +69,30 @@ const ForgotPassword = ({ navigation, route }) => {
           <ActivityIndicator />
         </View>
       ) : (
-        <View>
-          <Text style={styles.text(COMMON_CONSTS.SIGN_IN)}>
-            {COMMON_CONSTS.FORGOT_PASSWORD}
-          </Text>
-          <Text style={styles.text(COMMON_CONSTS.PASSWORD)}>
-            {COMMON_CONSTS.OTP}
-            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-          </Text>
-          <CustomTextInput
-            styleInputText={styles.textInputStyle(focusOtp)}
-            onFocusInput={() => handleOnFocus()}
-            onBlurInput={() => handelOnBlur()}
-            maxLength={4}
-            onChangeTextFunction={handleInputOtp}
-          />
-          <CustomButton
-            btnText={COMMON_CONSTS.CONTINUE}
-            styleBtn={styles.buttonStyle}
-            styleTxt={styles.buttonTextStyle}
-            onPressFunction={() => handleButtonPress()}
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.scrollViewStyle}>
+            <Text style={styles.text(COMMON_CONSTS.SIGN_IN)}>
+              {COMMON_CONSTS.FORGOT_PASSWORD}
+            </Text>
+            <Text style={styles.text(COMMON_CONSTS.PASSWORD)}>
+              {COMMON_CONSTS.OTP}
+              <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+            </Text>
+            <CustomTextInput
+              styleInputText={styles.textInputStyle(focusOtp)}
+              onFocusInput={() => handleOnFocus()}
+              onBlurInput={() => handelOnBlur()}
+              maxLength={4}
+              onChangeTextFunction={handleInputOtp}
+            />
+            <CustomButton
+              btnText={COMMON_CONSTS.CONTINUE}
+              styleBtn={styles.buttonStyle}
+              styleTxt={styles.buttonTextStyle}
+              onPressFunction={() => handleButtonPress()}
+            />
+          </View>
+        </ScrollView>
       )}
     </SafeAreaView>
   );

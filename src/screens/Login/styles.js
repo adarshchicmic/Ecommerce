@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     marginBottom: val === COMMON_CONSTS.SIGN_IN ? hp('10%') : RFValue(5),
     fontWeight: '500',
   }),
+  scrollViewStyle: {
+    marginTop: hp(10),
+  },
   TextInputStyle: val => ({
     height: hp('5%'),
     width: wp('90%'),
@@ -68,6 +71,7 @@ const styles = StyleSheet.create({
   validationTextStyle: {
     fontSize: RFValue(8),
     color: '#ff0000',
+    width: wp(90),
   },
 });
 

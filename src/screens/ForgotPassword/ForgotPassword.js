@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   View,
+  ScrollView,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
@@ -82,39 +83,41 @@ const ForgotPassword = ({ navigation }) => {
           <ActivityIndicator />
         </View>
       ) : (
-        <View>
-          <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
-            {COMMON_CONSTS.FORGOT_PASSWORD}
-          </Text>
-          <Text style={styles.Text(COMMON_CONSTS.MOBILE_NUMBER)}>
-            {COMMON_CONSTS.MOBILE_NUMBER}
-            <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
-          </Text>
-          <CustomTextInput
-            styleInputText={styles.TextInputStyle(focus.focusMobileNumber)}
-            onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
-            onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
-            onChangeTextFunction={handleInputMobileNumber}
-            keyboardTypeTextInput={'numeric'}
-          />
-          {!validation.mobileNumber && credentials.mobileNumber !== '' && (
-            <Text style={styles.starStyle}>
-              {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
+        <ScrollView>
+          <View style={styles.scrollViewStyle}>
+            <Text style={styles.Text(COMMON_CONSTS.SIGN_IN)}>
+              {COMMON_CONSTS.FORGOT_PASSWORD}
             </Text>
-          )}
+            <Text style={styles.Text(COMMON_CONSTS.MOBILE_NUMBER)}>
+              {COMMON_CONSTS.MOBILE_NUMBER}
+              <Text style={styles.starStyle}>{COMMON_CONSTS.STAR}</Text>
+            </Text>
+            <CustomTextInput
+              styleInputText={styles.TextInputStyle(focus.focusMobileNumber)}
+              onFocusInput={() => handleOnFocus(COMMON_CONSTS.MOBILE_NUMBER)}
+              onBlurInput={() => handelOnBlur(COMMON_CONSTS.MOBILE_NUMBER)}
+              onChangeTextFunction={handleInputMobileNumber}
+              keyboardTypeTextInput={'numeric'}
+            />
+            {!validation.mobileNumber && credentials.mobileNumber !== '' && (
+              <Text style={styles.starStyle}>
+                {COMMON_CONSTS.ENTER_VALID_MOBILE_NUMBER}
+              </Text>
+            )}
 
-          {!validation.password && credentials.password && (
-            <Text style={styles.starStyle}>
-              {COMMON_CONSTS.ENTER_VALID_PASSWORD}
-            </Text>
-          )}
-          <CustomButton
-            btnText={COMMON_CONSTS.CONTINUE}
-            styleBtn={styles.buttonStyle}
-            styleTxt={styles.buttonTextStyle}
-            onPressFunction={() => handleButtonPress()}
-          />
-        </View>
+            {!validation.password && credentials.password && (
+              <Text style={styles.starStyle}>
+                {COMMON_CONSTS.ENTER_VALID_PASSWORD}
+              </Text>
+            )}
+            <CustomButton
+              btnText={COMMON_CONSTS.CONTINUE}
+              styleBtn={styles.buttonStyle}
+              styleTxt={styles.buttonTextStyle}
+              onPressFunction={() => handleButtonPress()}
+            />
+          </View>
+        </ScrollView>
       )}
     </SafeAreaView>
   );

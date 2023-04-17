@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     marginTop: hp('5%'),
     borderRadius: 6,
   },
+  scrollViewStyle: {
+    marginTop: hp(13),
+  },
   buttonTextStyle: {
     alignSelf: 'center',
     fontSize: RFValue(15),

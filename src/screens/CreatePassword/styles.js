@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     borderRadius: 6,
   }),
+  scrollViewStyle: {
+    marginTop: hp(13),
+  },
   buttonStyle: {
     height: hp('5%'),
     width: wp('90%'),
@@ -58,6 +61,11 @@ const styles = StyleSheet.create({
   },
   footerView: {
     marginTop: hp('10%'),
+  },
+  textValidation: {
+    width: wp(90),
+    fontSize: RFValue(8),
+    color: '#ff0000',
   },
   textValidationlast: {
     fontSize: RFValue(8),
