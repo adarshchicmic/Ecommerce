@@ -74,3 +74,9 @@
 19	3048	1681708489	CMakeFiles/appmodules.dir/OnLoad.cpp.o	cd95f8b7151cd178
 18	24752	1681708511	CMakeFiles/appmodules.dir/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	28e5da03094a201d
 24753	25259	1681708511	/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/build/intermediates/cxx/Debug/3a134y5q/obj/x86_64/libappmodules.so	1a4dc04dff0872b9
+0	45	0	/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/CMakeFiles/cmake.verify_globs	27dfbefbec3cbcef
+45	188	1681725641	build.ninja	7c039e0f54820181
+1	18	0	/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64/CMakeFiles/cmake.verify_globs	27dfbefbec3cbcef
+13	2596	1681725643	CMakeFiles/appmodules.dir/OnLoad.cpp.o	cd95f8b7151cd178
+12	25340	1681725666	CMakeFiles/appmodules.dir/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	28e5da03094a201d
+25341	25838	1681725666	/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/build/intermediates/cxx/Debug/3a134y5q/obj/x86_64/libappmodules.so	1a4dc04dff0872b9

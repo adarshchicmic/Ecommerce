@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Button } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import {
   useLazyGetCartQuery,
@@ -15,7 +15,7 @@ import { changeTotalPrice } from '../../../store /feature/ProductSlice';
 const Cart = ({ navigation }) => {
   const isFocused = useIsFocused();
   const [getCart, { data, isSuccess, isLoading }] = useLazyGetCartQuery();
-
+  const [currentPage, setCurrentPage] = useState(0);
   const [removeFromCart, removeFromCartResult] = useRemoveFromCartMutation();
   console.log(removeFromCartResult, 'Ye remove from cart ka result hai ');
   // let cartItems = useGetCartItemsQuery();
@@ -33,7 +33,7 @@ const Cart = ({ navigation }) => {
       setIsLoading(false);
     }
     if (isFocused) {
-      getCart(1);
+      getCart(currentPage);
       console.log(data, 'ye cart item from lazy query hai ');
       // setCartItemsDetail(data?.data);
       setTotalPrice(data?.Total_price?.product_price__sum);
@@ -48,7 +48,7 @@ const Cart = ({ navigation }) => {
       setGoCheckOut(data?.data?.length);
       console.log(data.data.length, 'ye product count hai ');
     }
-  }, [isFocused, data, removeFromCartResult]);
+  }, [isFocused, data, removeFromCartResult, currentPage]);
   useEffect(() => {
     if (removeFromCart.isLoading) {
       setRemoveFromCartLoading(true);
@@ -60,6 +60,9 @@ const Cart = ({ navigation }) => {
       removeFromCartResult.isSuccess === true
     ) {
       alert('Product removed from cart successfully');
+    }
+    if (removeFromCartResult.isError) {
+      alert('Error');
     }
   }, [removeFromCartResult]);
   const handleRemoveFromCart = productId => {
@@ -106,18 +109,32 @@ const Cart = ({ navigation }) => {
           renderItem={({ item }) => handleRenderItems(item)}
           ListFooterComponent={
             <View>
-              <Text style={styles.totalAmountStyle}>
-                {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
-                {COMMON_CONSTS.RS}
-                {'    '}
-                {totalPrice}
-              </Text>
-              <CustomButton
-                styleBtn={styles.buttonStyle}
-                styleTxt={styles.buttonTextStyle}
-                btnText={COMMON_CONSTS.PROCEED_TO_CHECKOUT}
-                onPressFunction={handleCheckoutPress}
-              />
+              <View style={styles.cartButtonStyle}>
+                <Button
+                  title={COMMON_CONSTS.PREV}
+                  onPress={() => setCurrentPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+                <Button
+                  title={COMMON_CONSTS.NEXT}
+                  onPress={() => setCurrentPage(currentPage + 1)}
+                  disabled={cartItemsDetail.length < 5}
+                />
+              </View>
+              <View>
+                <Text style={styles.totalAmountStyle}>
+                  {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
+                  {COMMON_CONSTS.RS}
+                  {'    '}
+                  {totalPrice}
+                </Text>
+                <CustomButton
+                  styleBtn={styles.buttonStyle}
+                  styleTxt={styles.buttonTextStyle}
+                  btnText={COMMON_CONSTS.PROCEED_TO_CHECKOUT}
+                  onPressFunction={handleCheckoutPress}
+                />
+              </View>
             </View>
           }
         />

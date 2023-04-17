@@ -64,6 +64,8 @@ export const COMMON_CONSTS = {
   PLEASE_ADD_REVIEW: 'Please Add Review InputBox to add your review',
   USER_NAME: 'Adarsh',
   RS: '₹.',
+  PREV: 'Prev',
+  NEXT: 'Next',
 };
 
 export const BASE_URL = 'https://12dc-122-160-165-213.ngrok-free.app/';

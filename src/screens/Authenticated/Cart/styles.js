@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: wp(3),
   },
+  cartButtonStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export default styles;
