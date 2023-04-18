@@ -49,9 +49,9 @@ const TransactionHistory = ({ navigation }) => {
         <FlatList
           data={transactionData}
           renderItem={({ item }) => {
-            return <Text>{item}</Text>;
+            return <Text>{item.product_name}</Text>;
           }}
-          keyExtractor={item => item.id.toString()}
+          // keyExtractor={item => item.id.toString()}
           onEndReached={endReached}
           onEndReachedThreshold={0.5}
         />

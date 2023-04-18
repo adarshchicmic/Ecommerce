@@ -18,7 +18,7 @@ const OrderHistory = ({ navigation }) => {
     if (data.isLoading === false && data.isSuccess === true) {
       console.log(
         data?.data?.data,
-        'ye data hai bhia jdalkshhl fsdkhkjlhkjfhsd lkks ',
+        'ye data hai bhia  order historyjdalkshhl fsdkhkjlhkjfhsd lkks ',
       );
       setOrderData([...orderData, ...data?.data?.data]);
       console.log(

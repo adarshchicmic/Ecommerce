@@ -25,7 +25,10 @@ const CheckoutScreen = () => {
     'states find karo khdsafjklhlakjfhhfjk',
   );
   useEffect(() => {
-    intentFunction({ amount: states?.productSlice?.totalPrice * 100 });
+    intentFunction({
+      amount: states?.productSlice?.totalPrice * 100,
+      address: 'Adartsh',
+    });
     initializePaymentSheet();
   }, []);
   useEffect(() => {
@@ -89,14 +92,14 @@ const CheckoutScreen = () => {
           {COMMON_CONSTS.PAY_WITH_STRIPE}
         </Text>
       </TouchableOpacity>
-      {/* <Button
+      <Button
         style={styles.button}
         disabled={!loading}
         title="Checkout"
         color="#841584"
         onPress={openPaymentSheet}
       />
-      <Button title="jadsfkjldsfa" onPress={openPaymentSheet} /> */}
+      <Button title="jadsfkjldsfa" onPress={openPaymentSheet} />
     </View>
   );
 };

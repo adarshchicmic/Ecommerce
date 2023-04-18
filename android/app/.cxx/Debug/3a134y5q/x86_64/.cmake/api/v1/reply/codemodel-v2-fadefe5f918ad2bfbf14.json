@@ -143,49 +143,49 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "appmodules::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-appmodules-Debug-9094c87fedfee0a76a37.json",
+					"jsonFile" : "target-appmodules-Debug-b094237a4b265b22dc9c.json",
 					"name" : "appmodules",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 6,
 					"id" : "react_codegen_RNCWebViewSpec::@eb48929f9f7453740a6c",
-					"jsonFile" : "target-react_codegen_RNCWebViewSpec-Debug-189ac68a0cd42796cd01.json",
+					"jsonFile" : "target-react_codegen_RNCWebViewSpec-Debug-d574bd3ebb19ef4c25ea.json",
 					"name" : "react_codegen_RNCWebViewSpec",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "react_codegen_reactnativemmkv::@53a90ad335aa3dba27a5",
-					"jsonFile" : "target-react_codegen_reactnativemmkv-Debug-23f6b2fc874e96ea62ae.json",
+					"jsonFile" : "target-react_codegen_reactnativemmkv-Debug-b82d8a75c267377be7d9.json",
 					"name" : "react_codegen_reactnativemmkv",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "react_codegen_rngesturehandler_codegen::@39f233abcd2c728bc6ec",
-					"jsonFile" : "target-react_codegen_rngesturehandler_codegen-Debug-2cfaade304ab6c015210.json",
+					"jsonFile" : "target-react_codegen_rngesturehandler_codegen-Debug-340632f48a23438e71a2.json",
 					"name" : "react_codegen_rngesturehandler_codegen",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "react_codegen_rnscreens::@25bcbd507e98d3a854ad",
-					"jsonFile" : "target-react_codegen_rnscreens-Debug-0078050334d2afb835b2.json",
+					"jsonFile" : "target-react_codegen_rnscreens-Debug-cc67a355d34fc8045945.json",
 					"name" : "react_codegen_rnscreens",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65",
-					"jsonFile" : "target-react_codegen_rnsvg-Debug-7f06bdddf9710fbd8aa6.json",
+					"jsonFile" : "target-react_codegen_rnsvg-Debug-0b4ad8c9061700ec0537.json",
 					"name" : "react_codegen_rnsvg",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "react_codegen_safeareacontext::@7984cd80db47aa7b952a",
-					"jsonFile" : "target-react_codegen_safeareacontext-Debug-a18d7aaa2cb2399d711c.json",
+					"jsonFile" : "target-react_codegen_safeareacontext-Debug-df0b43494b7b04f06a81.json",
 					"name" : "react_codegen_safeareacontext",
 					"projectIndex" : 0
 				}
@@ -195,7 +195,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/armeabi-v7a",
+		"build" : "/Users/chicmic/Documents/finalDummyProject/EcommerceApp/android/app/.cxx/Debug/3a134y5q/x86_64",
 		"source" : "/Users/chicmic/Documents/finalDummyProject/EcommerceApp/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup"
 	},
 	"version" : 

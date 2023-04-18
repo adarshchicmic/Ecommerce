@@ -139,10 +139,10 @@ export const api = createApi({
       }),
     }),
     createIntent: builder.mutation({
-      query: ({ amount }) => ({
+      query: ({ amount, address }) => ({
         url: 'intent/',
         method: 'POST',
-        body: { amount },
+        body: { amount, address },
       }),
     }),
     productReview: builder.mutation({
