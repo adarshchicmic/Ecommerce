@@ -33,6 +33,7 @@ const SignUp = ({ navigation }) => {
   const [allfilled, setAllFilled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [signUp, signUpResult] = useSignUpMutation();
+
   useEffect(() => {
     if (signUpResult.isLoading === true) {
       setIsLoading(true);
@@ -63,12 +64,14 @@ const SignUp = ({ navigation }) => {
       validation.password
     ) {
       setAllFilled(true);
-      signUp({
+      const a = signUp({
         phone_number: credentials.mobileNumber,
         name: credentials.yourName,
         password: credentials.password,
         detail: 0,
       });
+
+      console.log(a, signUpResult, 'a ioshjklnlflk');
     } else {
       setAllFilled(false);
     }

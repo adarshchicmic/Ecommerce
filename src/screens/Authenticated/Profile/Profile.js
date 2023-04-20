@@ -26,7 +26,7 @@ const Profile = ({ navigation }) => {
     if (logoutResult.isLoading === false && logoutResult.isSuccess === true) {
       console.log(logoutResult, 'ye logout result hai ');
       if (logoutResult.data.status === true) {
-        navigation.navigate('Login');
+        // navigation.navigate('Login');
         dispatch(
           addToken({
             token: '',

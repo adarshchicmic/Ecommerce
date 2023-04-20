@@ -49,7 +49,13 @@ const TransactionHistory = ({ navigation }) => {
         <FlatList
           data={transactionData}
           renderItem={({ item }) => {
-            return <Text>{item.product_name}</Text>;
+            return (
+              <View>
+                <Text>{item.product_name}</Text>
+                <Text>{item.date}</Text>
+                <Text> Paid: {!!item?.paid}</Text>
+              </View>
+            );
           }}
           // keyExtractor={item => item.id.toString()}
           onEndReached={endReached}

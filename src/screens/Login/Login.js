@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
       if (signInResult.data.status === false) {
         alert(`${signInResult.data.message}, Please try again`);
       } else if (signInResult.data.status === true) {
-        navigation.navigate('FirstScreen');
+        // navigation.navigate('FirstScreen');
         setCredentials({ ...credentials, token: signInResult.data.token });
         dispatch(
           addUserData({
