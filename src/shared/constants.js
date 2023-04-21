@@ -67,6 +67,7 @@ export const COMMON_CONSTS = {
   PREV: 'Prev',
   NEXT: 'Next',
   OTPP: 'Otp',
+  NO_PRODUCTS_INSIDE_CART: 'No Product Inside Cart',
 };
 
 export const BASE_URL = 'https://b18b-122-160-165-213.ngrok-free.app/';

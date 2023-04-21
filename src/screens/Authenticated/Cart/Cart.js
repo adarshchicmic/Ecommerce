@@ -109,34 +109,42 @@ const Cart = ({ navigation }) => {
           renderItem={({ item }) => handleRenderItems(item)}
           ListFooterComponent={
             <View>
-              <View style={styles.cartButtonStyle}>
-                <Button
-                  title={COMMON_CONSTS.PREV}
-                  onPress={() => setCurrentPage(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  color="#9ad3db"
-                />
-                <Button
-                  title={COMMON_CONSTS.NEXT}
-                  color="#9ad3db"
-                  onPress={() => setCurrentPage(currentPage + 1)}
-                  disabled={cartItemsDetail.length < 5}
-                />
-              </View>
-              <View>
-                <Text style={styles.totalAmountStyle}>
-                  {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
-                  {COMMON_CONSTS.RS}
-                  {'    '}
-                  {totalPrice}
-                </Text>
-                <CustomButton
-                  styleBtn={styles.buttonStyle}
-                  styleTxt={styles.buttonTextStyle}
-                  btnText={COMMON_CONSTS.PROCEED_TO_CHECKOUT}
-                  onPressFunction={handleCheckoutPress}
-                />
-              </View>
+              {goCheckOut ? (
+                <View>
+                  <View style={styles.cartButtonStyle}>
+                    <Button
+                      title={COMMON_CONSTS.PREV}
+                      onPress={() => setCurrentPage(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      color="#9ad3db"
+                    />
+                    <Button
+                      title={COMMON_CONSTS.NEXT}
+                      color="#9ad3db"
+                      onPress={() => setCurrentPage(currentPage + 1)}
+                      disabled={cartItemsDetail.length < 5}
+                    />
+                  </View>
+                  <View>
+                    <Text style={styles.totalAmountStyle}>
+                      {COMMON_CONSTS.TOTAL_AMOUNT} {'    '}
+                      {COMMON_CONSTS.RS}
+                      {'    '}
+                      {totalPrice}
+                    </Text>
+                    <CustomButton
+                      styleBtn={styles.buttonStyle}
+                      styleTxt={styles.buttonTextStyle}
+                      btnText={COMMON_CONSTS.PROCEED_TO_CHECKOUT}
+                      onPressFunction={handleCheckoutPress}
+                    />
+                  </View>
+                </View>
+              ) : (
+                <View style={styles.textStyle}>
+                  <Text>{COMMON_CONSTS.NO_PRODUCTS_INSIDE_CART}</Text>
+                </View>
+              )}
             </View>
           }
         />

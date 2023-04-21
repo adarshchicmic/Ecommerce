@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
   buttonPrevNext: {
     backgroundColor: 'red',
   },
+  textStyle: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
 });
 
 export default styles;
