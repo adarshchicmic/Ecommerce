@@ -23,26 +23,30 @@ const Profile = ({ navigation }) => {
     if (isFocused) {
       getName({ phone_number: statew.number });
     }
-    if (logoutResult.isLoading === false && logoutResult.isSuccess === true) {
-      console.log(logoutResult, 'ye logout result hai ');
-      if (logoutResult.data.status === true) {
-        // navigation.navigate('Login');
-        dispatch(
-          addToken({
-            token: '',
-          }),
-        );
-      }
-    }
-  }, [logoutResult, isFocused]);
+    // if (logoutResult.isLoading === false && logoutResult.isSuccess === true) {
+    //   console.log(logoutResult, 'ye logout result hai ');
+    //   if (logoutResult.data.status === true) {
+    //     // navigation.navigate('Login');
+    //     dispatch(
+    //       addToken({
+    //         token: '',
+    //       }),
+    //     );
+    //   }
+    // }
+  }, [isFocused]);
   useEffect(() => {
     if (getNameResult.isLoading === false && getNameResult.isSuccess === true) {
       dispatch(setName({ name: getNameResult?.data?.data?.username }));
       setNamee(getNameResult?.data?.data?.username);
     }
   }, [getNameResult]);
-  const handleLogoutButtonPress = () => {
-    logout();
+  const handleLogoutButtonPress = async () => {
+    const logOutApiResult = await logout();
+    if (logOutApiResult?.data?.status) {
+      dispatch(addToken({ token: '' }));
+    }
+    console.log(logOutApiResult, 'ye yewl hai ');
   };
   const handleRecentViewedButtonPress = () => {
     navigation.navigate('RecentView');

@@ -66,9 +66,10 @@ export const COMMON_CONSTS = {
   RS: '₹.',
   PREV: 'Prev',
   NEXT: 'Next',
+  OTPP: 'Otp',
 };
 
-export const BASE_URL = 'https://9dca-122-160-165-213.ngrok-free.app/';
+export const BASE_URL = 'https://b18b-122-160-165-213.ngrok-free.app/';
 
 export const STRIPE_API_KEY =
   'pk_test_51MtAG2SEV4RLGDVIv4MmMYrDndWhjwBdZXyS9d22pqvKlbbN0xCdyu3XpPyUAMG14gxVTkRvMdlXhD0FSkPCizr300eD3tNBSh';

@@ -42,13 +42,16 @@ const ForgotPassword = ({ navigation, route }) => {
         navigation.navigate('CreateNewPassword', { number: number });
       }
     }
+    if (verifyOtpResult?.data?.status === false) {
+      alert('invalid otp');
+    }
     if (verifyOtpResult.isError) {
       alert('error');
     }
   }, [verifyOtpResult]);
   const handleButtonPress = () => {
     verifyOtp({ otp: otp, phone_number: number });
-    console.log('otp continue button pressed');
+    // console.log('otp continue button pressed');
   };
   const handleInputOtp = value => {
     console.log(value, 'ye value hai ');
@@ -72,7 +75,7 @@ const ForgotPassword = ({ navigation, route }) => {
         <ScrollView>
           <View style={styles.scrollViewStyle}>
             <Text style={styles.text(COMMON_CONSTS.SIGN_IN)}>
-              {COMMON_CONSTS.FORGOT_PASSWORD}
+              {COMMON_CONSTS.OTPP}
             </Text>
             <Text style={styles.text(COMMON_CONSTS.PASSWORD)}>
               {COMMON_CONSTS.OTP}

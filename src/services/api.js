@@ -163,7 +163,7 @@ export const api = createApi({
 });
 
 export const {
-  useGetAllProductsQuery,
+  useLazyGetAllProductsQuery,
   useGetProductQuery,
   useSignUpMutation,
   useSignInMutation,

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   }),
   buttonStyle: {
-    // height: hp('5%'),
+    height: hp('5%'),
     width: wp('90%'),
     borderWidth: 2,
     borderColor: 'black',

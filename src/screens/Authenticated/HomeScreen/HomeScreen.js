@@ -1,6 +1,13 @@
-import { View, Text, FlatList, Image, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { useGetAllProductsQuery } from '../../../services/api';
+import { useLazyGetAllProductsQuery } from '../../../services/api';
 import CustomCard from '../../../components/CustomCard/CustomCard';
 import {
   useAddToCartMutation,
@@ -8,30 +15,55 @@ import {
 } from '../../../services/api';
 
 const HomeScreen = ({ navigation }) => {
-  const [data, setData] = useState([]);
-  const getAllProducts = useGetAllProductsQuery();
-  const [recentlyViewed, recentlyViewedResult] =
-    useRecentlyViewedItemsMutation();
-
-  console.log(recentlyViewedResult, 'ye recently viewed ka result hai');
+  // const [data, setData] = useState([]);
+  const [
+    getAllProducts,
+    {
+      data: data,
+      isLoading: isLoadingGetAllProduct,
+      isSuccess: isSuccessGetAllProduct,
+      isError: isErrorGetAllProduct,
+    },
+  ] = useLazyGetAllProductsQuery();
+  const [
+    recentlyViewed,
+    {
+      data: dataRecentlyViewed,
+      isError: isErrorRecentlyViewed,
+      isSuccess: isSuccessRecentlyViewed,
+      isLoading: isLoadingRecentlyViewed,
+    },
+  ] = useRecentlyViewedItemsMutation();
+  console.log(data?.data, 'ye data aaya hai products ka ]');
+  // console.log(recentlyViewedResult, 'ye recently viewed ka result hai');
   const [addToCart, addToCartResult] = useAddToCartMutation();
   console.log(addToCartResult, 'ye add to cart ka result aha');
   useEffect(() => {
-    if (
-      getAllProducts?.isLoading === false &&
-      getAllProducts?.isSuccess === true
-    ) {
-      setData(getAllProducts?.data?.data);
-    }
-  }, [getAllProducts]);
-  useEffect(() => {
-    if (addToCartResult.isLoading === false && addToCartResult === true) {
-      console.log(addToCartResult, ' ye add to cart ka result hai ');
-      Alert.alert('Item added to cart');
-      alert('jkkdsfk');
-    }
-  }, [addToCartResult]);
-  console.log(data.name);
+    getAllProducts();
+  }, []);
+  if (isLoadingGetAllProduct || isLoadingRecentlyViewed) {
+    return <ActivityIndicator />;
+  }
+  if (isErrorRecentlyViewed || isErrorGetAllProduct) {
+    alert('Error');
+  }
+  // getAllProducts();
+  // useEffect(() => {
+  //   if (
+  //     getAllProducts?.isLoading === false &&
+  //     getAllProducts?.isSuccess === true
+  //   ) {
+  //     setData(getAllProducts?.data?.data);
+  //   }
+  // }, [getAllProducts]);
+  // useEffect(() => {
+  //   if (addToCartResult.isLoading === false && addToCartResult === true) {
+  //     console.log(addToCartResult, ' ye add to cart ka result hai ');
+  //     Alert.alert('Item added to cart');
+  //     alert('jkkdsfk');
+  //   }
+  // }, [addToCartResult]);
+  // console.log(data.name);
   const quantity = 1;
   const handleAddToCartButton = id => {
     addToCart({ product_id: id, quantity: quantity });
@@ -56,7 +88,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View>
       <FlatList
-        data={data}
+        data={data?.data}
         renderItem={({ item }) => handleRenderItem(item)}
         keyExtractor={item => item.id}
         numColumns={2}
@@ -65,4 +97,4 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-export default HomeScreen;
+export default React.memo(HomeScreen);

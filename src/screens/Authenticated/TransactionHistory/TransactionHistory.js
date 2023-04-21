@@ -4,6 +4,7 @@ import StatusBarr from '../../../components/StatusBar/StatusBar';
 import CustomGoBackComponent from '../../../components/CustomGoBack/CustomGoBackComponent';
 import { useTransactionHistoryQuery } from '../../../services/api';
 import { FlatList } from 'react-native-gesture-handler';
+import TransactionHistoryCard from '../../../components/TransactionHistoryCard/TransactionHistoryCard';
 const TransactionHistory = ({ navigation }) => {
   const [transactionData, setTransactionData] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -46,21 +47,29 @@ const TransactionHistory = ({ navigation }) => {
       <CustomGoBackComponent onPress={handleButtonGoBack} />
       {/* <StatusBarr backgroundColor={'red'} /> */}
       {!isEmpty ? (
-        <FlatList
-          data={transactionData}
-          renderItem={({ item }) => {
-            return (
-              <View>
-                <Text>{item.product_name}</Text>
-                <Text>{item.date}</Text>
-                <Text> Paid: {!!item?.paid}</Text>
-              </View>
-            );
-          }}
-          // keyExtractor={item => item.id.toString()}
-          onEndReached={endReached}
-          onEndReachedThreshold={0.5}
-        />
+        <View>
+          <FlatList
+            data={transactionData}
+            renderItem={({ item }) => {
+              console.log(item, 'ye items hai bhai bhai');
+              return (
+                <TransactionHistoryCard
+                  productName={item?.product_name}
+                  date={item?.date}
+                  paidStatus={item?.paid}
+                />
+                // <View>
+                //   <Text>{item.product_name}</Text>
+                //   <Text>{item.date}</Text>
+                //   <Text> Paid: {!!item?.paid}</Text>
+                // </View>
+              );
+            }}
+            // keyExtractor={item => item.id.toString()}
+            onEndReached={endReached}
+            onEndReachedThreshold={0.5}
+          />
+        </View>
       ) : (
         <Text>No Transaction found</Text>
       )}
